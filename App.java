@@ -1,6 +1,7 @@
 import javax.swing.JFrame;
 
 import view.LoginFrame;
+import view.MainFrame;
 
 // Main application file
 
@@ -13,7 +14,7 @@ public class App {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLocation(550, 350);
 
-        var activeFrame = new LoginFrame(window);
+        var activeFrame = new MainFrame(window);
 
         activeFrame.init();
         window.pack();

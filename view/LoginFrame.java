@@ -7,6 +7,7 @@ import java.awt.Container;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -22,8 +23,8 @@ public class LoginFrame  {
     /////Labels//////
     private JLabel copyright = new JLabel("Copyright 2021  >>| Cedric Green |<<");     
     private JLabel company = new JLabel("Company Name Here", SwingConstants.CENTER);
-    private JLabel username = new JLabel("                            Username: ");
-    private JLabel password = new JLabel("                             Password: ");
+    private JLabel username = new JLabel("Username:", SwingConstants.CENTER);
+    private JLabel password = new JLabel("Password:", SwingConstants.CENTER);
 
     //////Buttons/////
     private JButton forgotPassword = new JButton("Forgot Password");
@@ -31,8 +32,8 @@ public class LoginFrame  {
     private JButton register = new JButton("Register");
 
     ///// Textfields ////////
-    private JTextField userText = new JTextField();
-    private JTextField userPass = new JTextField();
+    private JTextField userText = new JTextField(SwingConstants.LEFT);
+    private JTextField userPass = new JTextField(SwingConstants.LEFT);
 
 
     public LoginFrame(JFrame window) {
@@ -76,8 +77,8 @@ public class LoginFrame  {
         company.setSize(50, 50);
         company.setFont(new Font("Arial Black", Font.PLAIN, 20));
  
-        username.setFont(new Font("Arial", Font.PLAIN, 14));        
-        password.setFont(new Font("Arial", Font.PLAIN, 14));
+        username.setFont(new Font("Arial", Font.BOLD, 14));        
+        password.setFont(new Font("Arial", Font.BOLD, 14));
 
 
         /////adding attributes to panels/////
