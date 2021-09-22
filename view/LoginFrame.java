@@ -7,25 +7,23 @@ import java.awt.Container;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
 
 
-public class LoginFrame  extends JFrame {
+public class LoginFrame  {
 
-    // singleton pattern for the window
-
-    private static LoginFrame loginFrame;
-    private final int WDO_HEIGHT = 300; 
-    private final int WDO_WIDTH = 400;
+    private JFrame window;
+    private int WDO_HEIGHT = 250; 
+    private int WDO_WIDTH = 400;
 
     /////Labels//////
-    private JLabel copyright = new JLabel("Copyright 2021  >>| Cedric Green |<<");     JLabel company = new JLabel("Company Name Here", SwingConstants.CENTER);
-    private JLabel username = new JLabel("Username: ");
-    private JLabel password = new JLabel("Password: ");
+    private JLabel copyright = new JLabel("Copyright 2021  >>| Cedric Green |<<");     
+    private JLabel company = new JLabel("Company Name Here", SwingConstants.CENTER);
+    private JLabel username = new JLabel("                            Username: ");
+    private JLabel password = new JLabel("                             Password: ");
 
     //////Buttons/////
     private JButton forgotPassword = new JButton("Forgot Password");
@@ -37,54 +35,40 @@ public class LoginFrame  extends JFrame {
     private JTextField userPass = new JTextField();
 
 
+    public LoginFrame(JFrame window) {
 
-
-    private LoginFrame() {
-        
-       
+        this.window = window;
     }
 
 
-    public static LoginFrame getLoginFrame(){
 
-        // if loginFrame obj does not yet exit create.
-        if(loginFrame == null) {
-            
-            loginFrame = new LoginFrame();
-
-        }
-
-        // if exists return the single obj
-
-        return loginFrame;
-    }
-
-    public void loadFrame(){
+    public void init() {
 
         //*** setting up the login screen ***
-        Container cp = loginFrame.getContentPane();
-        loginFrame.setSize(WDO_WIDTH, WDO_HEIGHT);
-        loginFrame.setTitle("Login - Company Name Here");
+        Container cp = window.getContentPane();
+        window.setSize(WDO_WIDTH, WDO_HEIGHT);
+        window.setTitle("Login - Company Name Here");
+        
 
-        ////////Panel & Subpanels///////////
+        ////////Panel & Subpanels//////////
         JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(3, 1));
         panel.setBackground(Color.LIGHT_GRAY);
 
-        JPanel sSubPanel = new JPanel();
-        sSubPanel.setBackground(Color.LIGHT_GRAY);
+        JPanel copywrightPanel = new JPanel();
+        copywrightPanel.add(copyright);
+        copywrightPanel.setBackground(Color.LIGHT_GRAY);
 
-        JPanel wSubPanel = new JPanel();
-        wSubPanel.setBackground(Color.LIGHT_GRAY);
+        JPanel southPanel = new JPanel();
+        southPanel.setBackground(Color.LIGHT_GRAY);
+        
 
-        JPanel nSubPanel = new JPanel();
-        JPanel nSubPanel2 = new JPanel();
-        nSubPanel2.setLayout(new GridLayout(1,1));
-        nSubPanel2.setBackground(Color.LIGHT_GRAY);
+        JPanel northPanel = new JPanel();
+        northPanel.setBackground(Color.LIGHT_GRAY);
 
-        JPanel eSubPanel = new JPanel();
-        JPanel eSubPanel2 = new JPanel();
-        eSubPanel.setLayout(new BorderLayout());
-        eSubPanel.setBackground(Color.LIGHT_GRAY);
+        JPanel centerPanel = new JPanel();
+        centerPanel.setBackground(Color.LIGHT_GRAY);
+        centerPanel.setLayout(new GridLayout(2, 2));
 
        
 
@@ -96,36 +80,30 @@ public class LoginFrame  extends JFrame {
         password.setFont(new Font("Arial", Font.PLAIN, 14));
 
 
-        /////adding secondary panels attributes/////
-        sSubPanel.add(copyright, BorderLayout.CENTER);
+        /////adding attributes to panels/////
 
      
-        wSubPanel.add(forgotPassword);
-        wSubPanel.add(login);
-        wSubPanel.add(register);
+        southPanel.add(forgotPassword);
+        southPanel.add(login);
+        southPanel.add(register);
 
-        nSubPanel.setLayout(new GridLayout(1,1));
-        nSubPanel.setBackground(Color.LIGHT_GRAY);
-        nSubPanel.add(company, BorderLayout.NORTH);
-        nSubPanel.add(nSubPanel2, BorderLayout.SOUTH);
-        nSubPanel2.add(username, BorderLayout.WEST);
-        nSubPanel2.add(userText, BorderLayout.CENTER);
-
-        eSubPanel.add(eSubPanel2, BorderLayout.SOUTH);
-        eSubPanel.add(password, BorderLayout.WEST);
-        eSubPanel.add(userPass, BorderLayout.CENTER);
-
-        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        loginFrame.setLocation(550, 350);
-        loginFrame.setVisible(true);
-
-        panel.setLayout(new BorderLayout());
-        panel.add(sSubPanel, BorderLayout.SOUTH);
-        panel.add(wSubPanel, BorderLayout.WEST);
-        panel.add(nSubPanel, BorderLayout.NORTH);
+        northPanel.add(company, BorderLayout.NORTH);
         
+        centerPanel.add(username);
+        centerPanel.add(userText);
+
+        centerPanel.add(password);
+        centerPanel.add(userPass);
+
+       
+       
         
-        cp.add(panel);
+        cp.setLayout(new GridLayout(4, 1));
+        cp.setBackground(Color.LIGHT_GRAY);
+        cp.add(northPanel);
+        cp.add(centerPanel);
+        cp.add(southPanel);
+        cp.add(copywrightPanel);
     }
 
 }
