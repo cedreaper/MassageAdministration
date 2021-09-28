@@ -1,5 +1,7 @@
 package model;
 
+import javax.swing.SwingConstants;
+
 public class Client {
 
     //class for massage clientelle information
@@ -87,6 +89,12 @@ public class Client {
     public void setPhone(String phone) {
 
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+
+        return name + " | " + phone;
     }
 
 }
