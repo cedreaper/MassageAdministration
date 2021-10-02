@@ -1,17 +1,24 @@
 package model;
 
+
 import javax.swing.SwingConstants;
+import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class Client {
 
     //class for massage clientelle information
 
+    private ArrayList<String> history;
     private String name;
     private String phone;
     private String address;
     private String healthComments;
     private String serviceType;
+    private String nextAppointment;
     private double rate;
+    
 
     public Client(String name, String phone) {
 
@@ -59,6 +66,29 @@ public class Client {
         }
 
         return "";
+    }
+
+    public String getNextAppointment() {
+
+        return nextAppointment;
+    }
+
+    public void setNextAppointment(String nextAppointment) {
+
+        try {
+            LocalDate.parse(nextAppointment);
+            this.nextAppointment = nextAppointment;
+        }
+        catch(DateTimeParseException e) {
+
+            return;
+
+        }
+    }
+
+    public ArrayList<String> getHistory() {
+
+        return history;
     }
 
     public Double getRate() {

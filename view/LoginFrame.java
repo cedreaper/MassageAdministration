@@ -32,8 +32,8 @@ public class LoginFrame  {
     private JButton register = new JButton("Register");
 
     ///// Textfields ////////
-    private JTextField userText = new JTextField(SwingConstants.LEFT);
-    private JTextField userPass = new JTextField(SwingConstants.LEFT);
+    private JTextField userText = new JTextField();
+    private JTextField userPass = new JTextField();
 
 
     public LoginFrame(JFrame window) {

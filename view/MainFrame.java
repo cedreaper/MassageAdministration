@@ -170,5 +170,10 @@ public class MainFrame {
 
         return datePicker;
     }
+
+    public JFrame getWindow() {
+
+        return window;
+    }
      
 }
