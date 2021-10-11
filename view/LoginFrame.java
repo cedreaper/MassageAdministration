@@ -22,7 +22,7 @@ public class LoginFrame  {
 
     /////Labels//////
     private JLabel copyright = new JLabel("Copyright 2021  >>| Cedric Green |<<");     
-    private JLabel company = new JLabel("Company Name Here", SwingConstants.CENTER);
+    private JLabel company = new JLabel("Scissortail Massage", SwingConstants.CENTER);
     private JLabel username = new JLabel("Username:", SwingConstants.CENTER);
     private JLabel password = new JLabel("Password:", SwingConstants.CENTER);
 
@@ -48,7 +48,7 @@ public class LoginFrame  {
         //*** setting up the login screen ***
         Container cp = window.getContentPane();
         window.setSize(WDO_WIDTH, WDO_HEIGHT);
-        window.setTitle("Login - Company Name Here");
+        window.setTitle("Login - Scissortail Massage");
         
 
         ////////Panel & Subpanels//////////

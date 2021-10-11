@@ -17,7 +17,8 @@ public class Client {
     private String healthComments;
     private String serviceType;
     private String nextAppointment;
-    private double rate;
+    private String appointmentTime;
+    private double price;
     
 
     public Client(String name, String phone) {
@@ -68,6 +69,16 @@ public class Client {
         return "";
     }
 
+    public String getAppointmentTime() {
+
+        return appointmentTime;
+    }
+
+    public void setAppointmentTime(String appointmentTime) {
+
+        this.appointmentTime = appointmentTime;
+    }
+
     public String getNextAppointment() {
 
         return nextAppointment;
@@ -75,6 +86,7 @@ public class Client {
 
     public void setNextAppointment(String nextAppointment) {
 
+        
         try {
             LocalDate.parse(nextAppointment);
             this.nextAppointment = nextAppointment;
@@ -93,12 +105,12 @@ public class Client {
 
     public Double getRate() {
 
-        return rate;
+        return price;
     }
 
-    public void setRate(double rate) {
+    public void setRate(double price) {
 
-        this.rate = rate;
+        this.price = price;
     }
 
     public void setServiceType(String serviceType) {
@@ -124,7 +136,8 @@ public class Client {
     @Override
     public String toString() {
 
-        return name + " | " + phone;
+        return name;
+        
     }
 
 }
