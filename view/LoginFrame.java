@@ -107,4 +107,9 @@ public class LoginFrame  {
         cp.add(copywrightPanel);
     }
 
+    public JFrame getWindow() {
+
+        return window;
+    }
+
 }

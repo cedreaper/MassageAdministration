@@ -27,6 +27,7 @@ public class ClientFrame {
     private JButton confirmButton = new JButton("Confirm");
     private JButton notesButton = new JButton("Notes");
     private JButton historyButton = new JButton("History");
+    private JButton medicalButton = new JButton("Medical");
 
     private JLabel clientFrameTitle = new JLabel("Client Information", SwingConstants.CENTER);
     private JLabel clientNameLabel = new JLabel("Name: ", SwingConstants.LEFT);
@@ -61,7 +62,7 @@ public class ClientFrame {
 
     private MainFrame panel;
 
-    public ClientFrame(JFrame window, MainFrame panel) {
+    public ClientFrame(JFrame window) {
 
         this.window = window;
         window.setTitle("Client Info - Scissortail Massage");
@@ -180,25 +181,26 @@ public class ClientFrame {
         sEight.add(editButton);
         sEight.add(historyButton);
         sEight.add(confirmButton);
+        sEight.add(medicalButton);
 
         panelThree.add(sEight);
         panelThree.add(errorLabel);
 
-        //disable text fields until edit button selected
+        //disable text field editing until edit button selected
 
-        clientNameText.setEnabled(false);
-        phoneText.setEnabled(false);
-        emailText.setEnabled(false);
-        workText.setEnabled(false);
-        addressText.setEnabled(false);
-        addressCityText.setEnabled(false);
-        addressStateText.setEnabled(false);
-        zipText.setEnabled(false);
-        nextAppointmentText.setEnabled(false);
-        serviceTypeText.setEnabled(false);
-        priceText.setEnabled(false);
-        emergencyNameText.setEnabled(false);
-        emergencyPhoneText.setEnabled(false);
+        clientNameText.setEditable(false);
+        phoneText.setEditable(false);
+        emailText.setEditable(false);
+        workText.setEditable(false);
+        addressText.setEditable(false);
+        addressCityText.setEditable(false);
+        addressStateText.setEditable(false);
+        zipText.setEditable(false);
+        nextAppointmentText.setEditable(false);
+        serviceTypeText.setEditable(false);
+        priceText.setEditable(false);
+        emergencyNameText.setEditable(false);
+        emergencyPhoneText.setEditable(false);
 
 
 

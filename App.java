@@ -3,8 +3,11 @@ import java.awt.Color;
 import javax.swing.JFrame;
 
 import view.ClientFrame;
+import view.HistoryFrame;
 import view.LoginFrame;
 import view.MainFrame;
+import view.MedicalFrame;
+import view.NotesFrame;
 
 // Main application file
 
@@ -19,7 +22,7 @@ public class App {
         window.setLocation(550, 350);
 
 
-        var activeFrame = new MainFrame(window);
+        var activeFrame = new MedicalFrame(window);
 
         activeFrame.init();
         window.pack();
