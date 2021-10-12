@@ -1,7 +1,5 @@
 package model;
 
-
-import javax.swing.SwingConstants;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -10,7 +8,11 @@ public class Client {
 
     //class for massage clientelle information
 
-    private ArrayList<String> history;
+    private ArrayList<String> medicalNotes = new ArrayList<>();
+    private ArrayList<Boolean> medicalProblems = new ArrayList<>();
+    private ArrayList<String> notes = new ArrayList<>();
+    private ArrayList<String> history = new ArrayList<>();
+
     private String name;
     private String phone;
     private String address;
@@ -18,6 +20,7 @@ public class Client {
     private String serviceType;
     private String nextAppointment;
     private String appointmentTime;
+
     private double price;
     
 
@@ -101,6 +104,21 @@ public class Client {
     public ArrayList<String> getHistory() {
 
         return history;
+    }
+
+    public ArrayList<String> getNotes() {
+
+        return notes;
+    }
+
+    public ArrayList<String> getMedicalNotes() {
+
+        return medicalNotes;
+    }
+
+    public ArrayList<Boolean> getMedicalProblems() {
+
+        return medicalProblems;
     }
 
     public Double getRate() {

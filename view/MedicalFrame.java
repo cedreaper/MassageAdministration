@@ -79,6 +79,8 @@ public class MedicalFrame {
             c.setEnabled(false);
         }
 
+        System.out.println("Size checkboxes arraylist: " + checkBoxes.size());
+
         saveButton.setEnabled(false);
 
         detailsText.setEditable(false);
