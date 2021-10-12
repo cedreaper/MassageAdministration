@@ -14,9 +14,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
@@ -73,13 +72,19 @@ public class MedicalFrame {
 
     public void init() {
 
+        //disable all that needs disabled until edit clicked
+
+        for(var c : checkBoxes) {
+
+            c.setEnabled(false);
+        }
+
         saveButton.setEnabled(false);
-        
+
         detailsText.setEditable(false);
 
         medicalLabel.setFont(new Font("arial black", Font.BOLD, 26));
-
-        detailsText.setPreferredSize(new Dimension(400, 350));
+        
 
         detailsText.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
@@ -91,7 +96,7 @@ public class MedicalFrame {
         cp.setBackground(Color.LIGHT_GRAY);
 
         window.setTitle("Medical - Scissortail Massage");
-        window.setLocation(400,200);
+        window.setLocation(300,200);
         
         
         JPanel panel1 = new JPanel();
@@ -122,8 +127,15 @@ public class MedicalFrame {
         s1.setBorder(checkArea);
         s2.setBorder(detailArea);
         
+        JScrollPane detailsScroll = new JScrollPane(detailsText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        detailsScroll.setPreferredSize(new Dimension(400, 350));
         
-        s2.add(detailsText);
+       
+       
+
+        s2.add(detailsScroll);
         s2.setBackground(Color.LIGHT_GRAY);
 
         s3.add(editButton);
