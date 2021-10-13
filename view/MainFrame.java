@@ -41,6 +41,7 @@ import org.jdatepicker.impl.UtilDateModel;
 import org.w3c.dom.Text;
 
 import controller.DateLabelFormatter;
+import controller.MainButtonListener;
 
 
 
@@ -56,11 +57,25 @@ public class MainFrame {
     private final int MAX_CLIENTS = 99;
     private final int MAX_APPOINTMENTS = 10;
 
+  
+
     // main application user interface
+
+    
     
     private int width = 500;
     private int height = 600;
     private JFrame window;
+
+     // main button listener
+     MainButtonListener listener;
+
+      //all secondary frames
+
+    private ClientFrame clientF;
+    private NotesFrame notesF;
+    private HistoryFrame historyF; 
+    private MedicalFrame medicalF; 
     
     private Client[] clients = new Client[MAX_CLIENTS];
     String[] appointments = new String[MAX_APPOINTMENTS];
@@ -86,9 +101,15 @@ public class MainFrame {
     public MainFrame(JFrame window) {
 
         this.window = window;
+       
     }
 
     public void init() {
+
+        clientF = new ClientFrame(window);
+        notesF = new NotesFrame(window);
+        historyF = new HistoryFrame(window);
+        medicalF = new MedicalFrame(window);
 
         Container cp = window.getContentPane();
         cp.setBackground(Color.LIGHT_GRAY);
@@ -100,6 +121,8 @@ public class MainFrame {
         JPanel northPanel = new JPanel();
         //northPanel.setLayout(new GridLayout(1, 4));
         northPanel.setBackground(Color.LIGHT_GRAY);
+
+        
 
         northPanel.add(clientInformation);
         northPanel.add(newClient);
@@ -271,6 +294,9 @@ public class MainFrame {
 
         state = States.MODIFIABLE;
 
+        listener = new MainButtonListener(this);
+        clientInformation.addActionListener(listener);
+
     }
 
     public JButton getLogoutButton() {
@@ -343,9 +369,43 @@ public class MainFrame {
         return state;
     }
 
+    public ClientFrame getClientFrame() {
+
+        return clientF;
+    }
+
+    public NotesFrame getNotesFrame() {
+
+        return notesF;
+    }
+
+    public MedicalFrame getMedicalFrame() {
+
+        return medicalF;
+    }
+
+    public HistoryFrame getHistoryFrame() {
+
+        return historyF;
+    }
+
+    public MainButtonListener getButtonListener() {
+
+        return listener;
+    }
+
+    public void removeFrames() {
+
+        clientF = null;
+        historyF = null;
+        medicalF = null;
+        notesF = null;
+    }
+
     public void setState(States state) {
 
         this.state = state;
     }
+
      
 }

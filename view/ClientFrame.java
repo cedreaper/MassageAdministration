@@ -15,6 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+import controller.MainButtonListener;
+
 
 public class ClientFrame {
     
@@ -28,6 +30,7 @@ public class ClientFrame {
     private JButton notesButton = new JButton("Notes");
     private JButton historyButton = new JButton("History");
     private JButton medicalButton = new JButton("Medical");
+    private JButton exitButton = new JButton("Exit");
 
     private JLabel clientFrameTitle = new JLabel("Client Information", SwingConstants.CENTER);
     private JLabel clientNameLabel = new JLabel("Name: ", SwingConstants.LEFT);
@@ -60,16 +63,14 @@ public class ClientFrame {
     private JTextField addressStateText = new JTextField(5);
     private JTextField zipText = new JTextField(10);
 
-    private MainFrame panel;
 
     public ClientFrame(JFrame window) {
 
         this.window = window;
-        window.setTitle("Client Info - Scissortail Massage");
         window.setPreferredSize(new Dimension(width, height));
         window.setLocation(300,100);
 
-        this.panel = panel;
+        this.window = window;
     }
 
     public void init() {
@@ -80,6 +81,8 @@ public class ClientFrame {
         JPanel panelOne = new JPanel();
         JPanel panelTwo = new JPanel();
         JPanel panelThree = new JPanel();
+
+        
 
         errorLabel.setVisible(false);
         errorLabel.setForeground(Color.red);
@@ -182,6 +185,7 @@ public class ClientFrame {
         sEight.add(historyButton);
         sEight.add(confirmButton);
         sEight.add(medicalButton);
+        sEight.add(exitButton);
 
         panelThree.add(sEight);
         panelThree.add(errorLabel);
@@ -208,10 +212,79 @@ public class ClientFrame {
         cp.add(panelTwo);
         cp.add(panelThree);
         
-       
+    }
 
+    public JFrame getWindow() {
 
+        return window;
+
+    }
+
+    public JButton getUpdateButton() {
+
+        return editButton;
+    }
+
+    public JButton getExitButton() {
+
+        return exitButton;
+    }
+
+    public JButton getMedicalButton() {
+
+        return medicalButton;
+    }
+
+    public JButton getHistoryButton() {
+
+        return historyButton;
+    }
+
+    public JButton getConfirmButton() {
+
+        return confirmButton;
+    }
+
+    public JButton getNotesButton() {
+
+        return notesButton;
+    }
+
+    public void enableTextFields() {
+
+        clientNameText.setEditable(true);
+        phoneText.setEditable(true);
+        emailText.setEditable(true);
+        emergencyNameText.setEditable(true);
+        emergencyPhoneText.setEditable(true);
+        addressCityText.setEditable(true);
+        addressStateText.setEditable(true);
+        addressText.setEditable(true);
+        zipText.setEditable(true);
+        priceText.setEditable(true);
+        serviceTypeText.setEditable(true);
+        nextAppointmentText.setEditable(true);
+        workText.setEditable(true);
+
+    }
+
+    public void disableTextFields() {
         
+        clientNameText.setEditable(false);
+        phoneText.setEditable(false);
+        emailText.setEditable(false);
+        emergencyNameText.setEditable(false);
+        emergencyPhoneText.setEditable(false);
+        addressCityText.setEditable(false);
+        addressStateText.setEditable(false);
+        addressText.setEditable(false);
+        zipText.setEditable(false);
+        priceText.setEditable(false);
+        serviceTypeText.setEditable(false);
+        nextAppointmentText.setEditable(false);
+        workText.setEditable(false);
         
     }
+
+  
 }

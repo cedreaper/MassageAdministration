@@ -35,7 +35,6 @@ public class HistoryFrame {
     public void init() {
 
         Container cp = window.getContentPane();
-        window.setTitle("History - Scissortail Massage");
         window.setSize(700, 600);
         window.setLocation(500,200);
         cp.setBackground(Color.LIGHT_GRAY);

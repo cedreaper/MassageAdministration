@@ -97,7 +97,6 @@ public class MedicalFrame {
 
         cp.setBackground(Color.LIGHT_GRAY);
 
-        window.setTitle("Medical - Scissortail Massage");
         window.setLocation(300,200);
         
         

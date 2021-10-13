@@ -41,7 +41,6 @@ public class NotesFrame {
     public void init() {
 
         Container cp = window.getContentPane();
-        window.setTitle("Notes - Scissortail Massage");
         window.setLocation(400,75);
         cp.setBackground(Color.LIGHT_GRAY);
 
@@ -75,6 +74,26 @@ public class NotesFrame {
 
 
         
+    }
+
+    public JButton getAddButton() {
+
+        return addButton;
+    }
+
+    public JButton getSaveButton() {
+
+        return  saveButton;
+    }
+
+    public JButton getExitButton() {
+        
+        return exitButton;
+    }
+
+    public JTextArea getNotesArea() {
+
+        return notesArea;
     }
     
 }

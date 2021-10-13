@@ -48,7 +48,6 @@ public class LoginFrame  {
         //*** setting up the login screen ***
         Container cp = window.getContentPane();
         window.setSize(WDO_WIDTH, WDO_HEIGHT);
-        window.setTitle("Login - Scissortail Massage");
         
 
         ////////Panel & Subpanels//////////

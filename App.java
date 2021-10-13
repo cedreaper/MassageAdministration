@@ -22,7 +22,7 @@ public class App {
         window.setLocation(550, 350);
 
 
-        var activeFrame = new MedicalFrame(window);
+        var activeFrame = new MainFrame(window);
 
         activeFrame.init();
         window.pack();
