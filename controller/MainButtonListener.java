@@ -189,6 +189,7 @@ public class MainButtonListener implements ActionListener {
             
             //logout main - reopen login screen
             panel.getWindow().getContentPane().removeAll();
+            // panel.getWindow().setLocation(550,350);
             var loginFrame = new LoginFrame(panel.getWindow());
             loginFrame.init();
             panel.getWindow().revalidate();

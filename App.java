@@ -2,12 +2,8 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 
-import view.ClientFrame;
-import view.HistoryFrame;
 import view.LoginFrame;
-import view.MainFrame;
-import view.MedicalFrame;
-import view.NotesFrame;
+
 
 // Main application file
 

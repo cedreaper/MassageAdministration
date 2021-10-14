@@ -2,11 +2,14 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.io.File;
+import java.util.Scanner;
 import java.awt.Color;
 import java.awt.Container;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,7 +19,6 @@ import javax.swing.JTextField;
 
 
 public class LoginFrame  {
-
 
     ///////Main Frame////////
 
@@ -38,9 +40,19 @@ public class LoginFrame  {
 
     ///// Textfields ////////
     private JTextField userText = new JTextField();
-    private JTextField userPass = new JTextField();
+    private JPasswordField userPass = new JPasswordField();
 
     private int counter = 0;
+
+    //////// user file /////////
+
+    private File userFile;
+    private Scanner fileIn;
+
+    private String user;
+    private String pass;
+
+    private Boolean isValidUser = false;
 
 
     public LoginFrame(JFrame window) {
@@ -52,14 +64,33 @@ public class LoginFrame  {
 
 
     public void init() {
-
-        //create mainframe object
          
+        userPass.setEchoChar('*');
+
+        //check file for availability
+        try {
+
+            fileIn = new Scanner(new File("mcdb/userconfig.txt"));
+            user = fileIn.nextLine();
+            pass = fileIn.nextLine();
+
+            fileIn.close();
+            
+
+        }
+        catch (Exception e) {
+
+            JOptionPane.showMessageDialog(window, "User Configuration File not found.\n" + 
+                "Please reinstall software or email ScissortailIT@gmail.com\n" +
+                "Login will not work until fixed...");
+        }
+        
 
         //*** setting up the login screen ***
         Container cp = window.getContentPane();
         window.setSize(WDO_WIDTH, WDO_HEIGHT);
         window.setTitle("Login - Scissortail Massage");
+        window.setLocation(500,250);
         
 
         ////////Panel & Subpanels//////////
@@ -126,17 +157,38 @@ public class LoginFrame  {
 
         login.addActionListener(e -> {
 
-            window.dispose();
+            
+            String passWord = new String(userPass.getPassword());
+            if(userText.getText().toLowerCase().equals(user) &&
+            passWord.equals(pass)) {
 
-            if(counter == 0) {
+                isValidUser = true;
 
-                JFrame window2 = new JFrame();
-                window2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                mainFrame = new MainFrame(window2, this);
-                mainFrame.init();
-                window2.pack();
-                window2.setVisible(true); 
             }
+
+            
+            if(isValidUser) {
+
+                window.dispose();
+
+                if(counter == 0) {
+    
+                    JFrame window2 = new JFrame();
+                    window2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    mainFrame = new MainFrame(window2, this);
+                    mainFrame.init();
+                    window2.pack();
+                    window2.setVisible(true); 
+                }
+
+            }
+            else {
+
+                JOptionPane.showMessageDialog(window, "                      ACCESS DENIED\n" +
+                        "You have entered an invalid username or password.\n" +
+                        "Please try again or contact the business owner.");
+            }
+          
             
           
 
@@ -148,6 +200,11 @@ public class LoginFrame  {
     public JFrame getWindow() {
 
         return window;
+    }
+
+    public File getUserFile() {
+
+        return userFile;
     }
 
 }
