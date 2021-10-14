@@ -6,7 +6,7 @@ import java.time.format.DateTimeParseException;
 
 public class Client {
 
-    //class for massage clientelle information
+    //class for massage client information
 
     private ArrayList<String> medicalNotes = new ArrayList<>();
     private ArrayList<Boolean> medicalProblems = new ArrayList<>();
@@ -20,8 +20,7 @@ public class Client {
     private String serviceType;
     private String nextAppointment;
     private String appointmentTime;
-
-    private double price;
+    private String price;
     
 
     public Client(String name, String phone) {
@@ -121,12 +120,12 @@ public class Client {
         return medicalProblems;
     }
 
-    public Double getRate() {
+    public String getRate() {
 
         return price;
     }
 
-    public void setRate(double price) {
+    public void setRate(String price) {
 
         this.price = price;
     }

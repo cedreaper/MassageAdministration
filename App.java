@@ -19,7 +19,7 @@ public class App {
         JFrame window = new JFrame();
         window.setBackground(Color.LIGHT_GRAY);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setLocation(550, 350);
+        window.setLocation(300, 100);
 
 
         var activeFrame = new LoginFrame(window);

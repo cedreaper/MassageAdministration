@@ -131,15 +131,13 @@ public class LoginFrame  {
             if(counter == 0) {
 
                 JFrame window2 = new JFrame();
+                window2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 mainFrame = new MainFrame(window2, this);
                 mainFrame.init();
                 window2.pack();
                 window2.setVisible(true); 
             }
-            else {
-
-                mainFrame.getMainFrame().getWindow().setVisible(true);
-            }
+            
           
 
         });
