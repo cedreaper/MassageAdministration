@@ -75,6 +75,7 @@ public class ClientFrame {
 
     public void init() {
 
+       
         Container cp = window.getContentPane();
         cp.setLayout(new GridLayout(3,1));
         cp.setBackground(Color.LIGHT_GRAY);
@@ -82,10 +83,12 @@ public class ClientFrame {
         JPanel panelTwo = new JPanel();
         JPanel panelThree = new JPanel();
 
-        
-
+        confirmButton.setEnabled(false);
         errorLabel.setVisible(false);
         errorLabel.setForeground(Color.red);
+
+
+        priceText.setText("$");
        
 
         //sub panels
@@ -283,7 +286,7 @@ public class ClientFrame {
         serviceTypeText.setEditable(false);
         nextAppointmentText.setEditable(false);
         workText.setEditable(false);
-        
+
     }
 
   

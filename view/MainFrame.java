@@ -76,6 +76,7 @@ public class MainFrame {
     private NotesFrame notesF;
     private HistoryFrame historyF; 
     private MedicalFrame medicalF; 
+    private LoginFrame loginF;
     
     private Client[] clients = new Client[MAX_CLIENTS];
     String[] appointments = new String[MAX_APPOINTMENTS];
@@ -98,7 +99,7 @@ public class MainFrame {
     private int clientCount;
 
 
-    public MainFrame(JFrame window) {
+    public MainFrame(JFrame window, LoginFrame loginFrame) {
 
         this.window = window;
        
@@ -296,6 +297,7 @@ public class MainFrame {
 
         listener = new MainButtonListener(this);
         clientInformation.addActionListener(listener);
+        logout.addActionListener(listener);
 
     }
 
@@ -357,7 +359,7 @@ public class MainFrame {
         }
         else {
 
-            JOptionPane.showMessageDialog(null, "Clients list has reached maximum capacity. Please contact your software\nadministrator to" + 
+            JOptionPane.showMessageDialog(null, "Clients list has reached maximum capacity.\nPlease contact your software\nadministrator to" + 
                 " purchase additional client storage.");
         }
         
@@ -405,6 +407,16 @@ public class MainFrame {
     public void setState(States state) {
 
         this.state = state;
+    }
+
+    public LoginFrame getLoginFrame() {
+
+        return loginF;
+    }
+
+    public MainFrame getMainFrame() {
+
+        return this;
     }
 
      

@@ -35,8 +35,8 @@ public class HistoryFrame {
     public void init() {
 
         Container cp = window.getContentPane();
-        window.setSize(700, 600);
-        window.setLocation(500,200);
+        //window.setSize(700, 600);
+        //window.setLocation(500,200);
         cp.setBackground(Color.LIGHT_GRAY);
 
         historyArea.setLineWrap(true);
@@ -61,6 +61,11 @@ public class HistoryFrame {
         cp.add(BorderLayout.SOUTH, exitPanel);
 
         
+    }
+
+    public JButton getExitButton() {
+
+        return exitButton;
     }
     
 }

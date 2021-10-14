@@ -79,7 +79,7 @@ public class MedicalFrame {
             c.setEnabled(false);
         }
 
-        System.out.println("Size checkboxes arraylist: " + checkBoxes.size());
+        //System.out.println("Size checkboxes arraylist: " + checkBoxes.size());
 
         saveButton.setEnabled(false);
 
@@ -96,8 +96,6 @@ public class MedicalFrame {
         Container cp = window.getContentPane();
 
         cp.setBackground(Color.LIGHT_GRAY);
-
-        window.setLocation(300,200);
         
         
         JPanel panel1 = new JPanel();
@@ -127,14 +125,15 @@ public class MedicalFrame {
 
         s1.setBorder(checkArea);
         s2.setBorder(detailArea);
+        detailsText.setWrapStyleWord(true);
+        detailsText.setLineWrap(true);
+        
         
         JScrollPane detailsScroll = new JScrollPane(detailsText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
             JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-        detailsScroll.setPreferredSize(new Dimension(400, 350));
-        
-       
-       
+        detailsScroll.setPreferredSize(new Dimension(380, 160));
+           
 
         s2.add(detailsScroll);
         s2.setBackground(Color.LIGHT_GRAY);
@@ -155,6 +154,47 @@ public class MedicalFrame {
         cp.add(BorderLayout.SOUTH, panel2);
 
        
+    }
+
+    public JButton getEditButton() {
+
+        return editButton;
+    }
+
+    public JButton getExitButton() {
+
+        return exitButton;
+    }
+
+    public JButton getSaveButton() {
+
+        return saveButton;
+    }
+
+    public ArrayList<JCheckBox> getCheckBoxes() {
+
+        return checkBoxes;
+    }
+
+    public JTextArea getDetailsText() {
+
+        return detailsText;
+    }
+
+    public void enableCheckBoxes() {
+
+        for(var c : checkBoxes) {
+
+            c.setEnabled(true);
+        }
+    }
+
+    public void disableCheckBoxes() {
+
+        for(var c : checkBoxes) {
+
+            c.setEnabled(false);
+        }
     }
 
 

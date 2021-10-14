@@ -9,12 +9,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
 
 
 public class LoginFrame  {
+
+
+    ///////Main Frame////////
+
+    private MainFrame mainFrame;
 
     private JFrame window;
     private int WDO_HEIGHT = 250; 
@@ -29,25 +35,31 @@ public class LoginFrame  {
     //////Buttons/////
     private JButton forgotPassword = new JButton("Forgot Password");
     private JButton login = new JButton("Login");
-    private JButton register = new JButton("Register");
 
     ///// Textfields ////////
     private JTextField userText = new JTextField();
     private JTextField userPass = new JTextField();
 
+    private int counter = 0;
+
 
     public LoginFrame(JFrame window) {
 
         this.window = window;
+        
     }
 
 
 
     public void init() {
 
+        //create mainframe object
+         
+
         //*** setting up the login screen ***
         Container cp = window.getContentPane();
         window.setSize(WDO_WIDTH, WDO_HEIGHT);
+        window.setTitle("Login - Scissortail Massage");
         
 
         ////////Panel & Subpanels//////////
@@ -85,7 +97,6 @@ public class LoginFrame  {
      
         southPanel.add(forgotPassword);
         southPanel.add(login);
-        southPanel.add(register);
 
         northPanel.add(company, BorderLayout.NORTH);
         
@@ -104,6 +115,36 @@ public class LoginFrame  {
         cp.add(centerPanel);
         cp.add(southPanel);
         cp.add(copywrightPanel);
+
+        //login frame will have its own button listener lambdas since only 2 buttons
+
+        forgotPassword.addActionListener( e ->  {
+            
+            JOptionPane.showMessageDialog(window, "If you are the administrator..\nplease refer to your instructions.\n" +
+            "Otherwise.. please contact the business\nowner for access permissions.");
+        });
+
+        login.addActionListener(e -> {
+
+            window.dispose();
+
+            if(counter == 0) {
+
+                JFrame window2 = new JFrame();
+                mainFrame = new MainFrame(window2, this);
+                mainFrame.init();
+                window2.pack();
+                window2.setVisible(true); 
+            }
+            else {
+
+                mainFrame.getMainFrame().getWindow().setVisible(true);
+            }
+          
+
+        });
+        
+
     }
 
     public JFrame getWindow() {

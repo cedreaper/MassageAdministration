@@ -22,11 +22,12 @@ public class App {
         window.setLocation(550, 350);
 
 
-        var activeFrame = new MainFrame(window);
+        var activeFrame = new LoginFrame(window);
 
         activeFrame.init();
         window.pack();
         window.setVisible(true);
+
         
 
     }

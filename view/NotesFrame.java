@@ -41,7 +41,6 @@ public class NotesFrame {
     public void init() {
 
         Container cp = window.getContentPane();
-        window.setLocation(400,75);
         cp.setBackground(Color.LIGHT_GRAY);
 
 
