@@ -1,40 +1,116 @@
 package model;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class ClientDB {
 
-    private ArrayList<Client> clients = new ArrayList<>();
-
-    private File inFile;
-    private File outFile;
-    private File buffer;
+    private static ArrayList<Client> clients = new ArrayList<>();
+    private String dbErrMsg = "";
+    
 
     public ClientDB() {
 
-
-
     }
 
-    public ArrayList<Client> getClients() {
+    public static void loadClients() {
+
+        Scanner fileIn = new Scanner(System.in);
+
+        try {
+
+            fileIn = new Scanner(new File("mcdb/bdtneilc.txt"));
+            
+        }
+        catch(Exception e) {
+
+            System.out.println("Error" + e.toString());
+        }
+
+        while(fileIn.hasNext()) {
+
+            String name = fileIn.nextLine();
+            String phone = fileIn.nextLine();
+                
+            Client c = new Client(name, phone);
+
+            c.setAddress(fileIn.nextLine());
+            c.setServiceType(fileIn.nextLine());
+            c.setNextAppointment(fileIn.nextLine());
+            c.setAppointmentTime(fileIn.nextLine());
+            c.setPrice(fileIn.nextLine());
+            c.setEmergencyName(fileIn.nextLine());
+            c.setEmergencyPhone(fileIn.nextLine());
+            c.setState(fileIn.nextLine());
+            c.setCity(fileIn.nextLine());
+            c.setZip(fileIn.nextLine());
+            c.setWorkPhone(fileIn.nextLine());
+            c.setEmail(fileIn.nextLine());
+            c.setHistory(fileIn.nextLine());
+            c.setMedicalNotes(fileIn.nextLine());
+            c.setNotes(fileIn.nextLine());
+
+
+            for(int i = 0; i < 28; i++) {
+                
+                Boolean isWhat;
+
+                String value = fileIn.nextLine();
+
+                if(value.equals("true")) {
+
+                    isWhat = true;
+                    c.getMedicalProblems().add(isWhat);
+                }
+                else if(value.equals("false")) {
+
+                    isWhat = false;
+                    c.getMedicalProblems().add(isWhat);
+
+                }
+              
+               
+            }
+
+            //add client
+            clients.add(c);
+
+        }
+
+        fileIn.close();
+    }
+
+    public static ArrayList<Client> getClients() {
 
         return clients;
     }
 
-    public void updateAll() {
+    public static void updateAll() {
 
 
     }
 
-    public void updateClient(Client client) {
+    public static void updateClient(Client client) {
 
 
     }
 
-   public void removeClient(Client client) {
+   public static void removeClient(Client client) {
 
    }
+
+   public String getDbErrMsg() {
+
+       return dbErrMsg;
+
+   }
+
+   
 
     
 }

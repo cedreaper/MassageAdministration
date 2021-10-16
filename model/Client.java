@@ -8,19 +8,28 @@ public class Client {
 
     //class for massage client information
 
-    private ArrayList<String> medicalNotes = new ArrayList<>();
     private ArrayList<Boolean> medicalProblems = new ArrayList<>();
-    private ArrayList<String> notes = new ArrayList<>();
-    private ArrayList<String> history = new ArrayList<>();
+    
+   
 
     private String name;
     private String phone;
     private String address;
-    private String healthComments;
     private String serviceType;
     private String nextAppointment;
     private String appointmentTime;
     private String price;
+    private String email;
+    private String workPhone;
+    private String emergencyName;
+    private String emergencyPhone;
+    private String state;
+    private String city;
+    private String zip;
+    private String history;
+    private String medicalNotes;
+    private String notes;
+    
     
 
     public Client(String name, String phone) {
@@ -49,16 +58,6 @@ public class Client {
     public String getPhone() {
 
         return phone;
-    }
-
-    public String getHealthComments() {
-
-        if(healthComments != null) {
-
-            return healthComments;
-        }
-
-        return "";
     }
 
     public String getServiceType() {
@@ -100,17 +99,50 @@ public class Client {
         }
     }
 
-    public ArrayList<String> getHistory() {
+    public String getHistory() {
 
         return history;
     }
 
-    public ArrayList<String> getNotes() {
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getEmergencyName() {
+        return emergencyName;
+    }
+
+    public String getEmergencyPhone() {
+        return emergencyPhone;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public String getWorkPhone() {
+        return workPhone;
+    }
+
+    public String getNotes() {
 
         return notes;
     }
 
-    public ArrayList<String> getMedicalNotes() {
+    public String getMedicalNotes() {
 
         return medicalNotes;
     }
@@ -128,6 +160,18 @@ public class Client {
     public void setRate(String price) {
 
         this.price = price;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 
     public void setServiceType(String serviceType) {
@@ -148,6 +192,42 @@ public class Client {
     public void setPhone(String phone) {
 
         this.phone = phone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setHistory(String history) {
+        this.history = history;
+    }
+
+    public void setEmergencyName(String emergencyName) {
+        this.emergencyName = emergencyName;
+    }
+
+    public void setEmergencyPhone(String emergencyPhone) {
+        this.emergencyPhone = emergencyPhone;
+    }
+
+    public void setMedicalNotes(String medicalNotes) {
+        this.medicalNotes = medicalNotes;
+    }
+
+    public void setMedicalProblems(ArrayList<Boolean> medicalProblems) {
+        this.medicalProblems = medicalProblems;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
     }
 
     @Override

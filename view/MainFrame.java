@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.util.Calendar;
 
 import model.Client;
+import model.ClientDB;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -54,7 +55,7 @@ public class MainFrame {
 
     //constants
 
-    private final int MAX_CLIENTS = 99;
+    private final int MAX_CLIENTS = 100;
     private final int MAX_APPOINTMENTS = 10;
 
   
@@ -77,6 +78,7 @@ public class MainFrame {
     private HistoryFrame historyF; 
     private MedicalFrame medicalF; 
     private LoginFrame loginF;
+    private ClientDB db;
     
     private Client[] clients = new Client[MAX_CLIENTS];
     String[] appointments = new String[MAX_APPOINTMENTS];
@@ -135,25 +137,30 @@ public class MainFrame {
         clientLabel.setPreferredSize(new Dimension(500, 300));
        
 
-        //mock up client (me)
-
-        clients[0] = new Client("Cedric Green", "405-896-0669");
-        clients[0].setNextAppointment("2021-10-09");
-        clients[0].setServiceType("Deep Tissue");
-        clients[0].setAppointmentTime("2:00 PM");  
-        clientCount++;
-      
-        //test scrollBar
-        for(int i = 1; i < 99; i++) {
-
-           clients[i] = new Client("Testing!!!", "405-599-1234");
-           clientCount++;
+        ClientDB.loadClients();
+        
+        // real client implementation
+        int j = 0;
+        System.out.println("Clients in DB = " + ClientDB.getClients().size() + " First Client: " + ClientDB.getClients().get(0));
+        
+        for(var c : ClientDB.getClients()) {
             
+            clients[j] = c;
+            System.out.println(clients[j].getName());
+            j++;
+
+        }
+        //use j to find out the number of clients loaded... then take that subtracted
+        //from the total clients and load in x number of null clients;
+
+        for(int i = j; i < MAX_CLIENTS - 1; i++) {
+
+            clients[i] = new Client("", "");
         }
 
-        clients[30].setNextAppointment("2021-10-09");
-        clients[35].setNextAppointment("2021-10-09");
-        clients[40].setNextAppointment("2021-10-22");
+        System.out.println(clients[0].getName());
+
+ 
     
         JList<Client> currentClients = new JList<Client>(clients);
         int appointmentSize = 10;
@@ -217,12 +224,16 @@ public class MainFrame {
 
         for(var cl : clients) {
 
+            if(cl != null) {
+
+            
             if(cl.getNextAppointment() != null) {
 
-                if(cl.getNextAppointment().equals(LocalDate.now().toString())) {            
-                    appointments[k] = cl.toString() + " | " + cl.getServiceType() + " | " +
-                    cl.getAppointmentTime();
-                    k++;
+                    if(cl.getNextAppointment().equals(LocalDate.now().toString())) {            
+                        appointments[k] = cl.toString() + " | " + cl.getServiceType() + " | " +
+                        cl.getAppointmentTime();
+                        k++;
+                    }
                 }
             }
         }

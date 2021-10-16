@@ -189,9 +189,6 @@ public class LoginFrame  {
                         "Please try again or contact the business owner.");
             }
           
-            
-          
-
         });
         
 

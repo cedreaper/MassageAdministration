@@ -41,7 +41,8 @@ public class ClientFrame {
     private JLabel addressCityLabel = new JLabel("City: ");
     private JLabel addressStateLabel = new JLabel("State: ");
     private JLabel zipLabel = new JLabel("Zip Code: ");
-    private JLabel nextAppointmentLabel = new JLabel("Next Appointment: ");
+    private JLabel nextAppointmentLabel = new JLabel("Next Appointment(YYYY-MM-DD): ");
+    private JLabel nextAppointmentTime = new JLabel("Time(XXPM): ");
     private JLabel emergencyName = new JLabel("Name: ");
     private JLabel emergencyPhone = new JLabel("Phone: ");
     private JLabel serviceType = new JLabel("Service Type: ");
@@ -62,6 +63,7 @@ public class ClientFrame {
     private JTextField addressCityText = new JTextField(20);
     private JTextField addressStateText = new JTextField(5);
     private JTextField zipText = new JTextField(10);
+    private JTextField nextAppointmentTimeText = new JTextField(10);
 
 
     public ClientFrame(JFrame window) {
@@ -148,6 +150,7 @@ public class ClientFrame {
 
         sFour.add(zipLabel);
         sFour.add(zipText);
+       
         
 
         panelOne.add(sFour);
@@ -179,6 +182,10 @@ public class ClientFrame {
         sSeven.setBorder(filler);
         sSeven.add(nextAppointmentLabel);
         sSeven.add(nextAppointmentText);
+        sSeven.add(nextAppointmentTime);
+        sSeven.add(nextAppointmentTimeText);
+
+        nextAppointmentTimeText.setEditable(false);
 
         panelTwo.add(sSeven);
 
@@ -253,6 +260,61 @@ public class ClientFrame {
         return notesButton;
     }
 
+    public JTextField getAddressCityText() {
+        return addressCityText;
+    }
+
+    public JTextField getAddressStateText() {
+        return addressStateText;
+    }
+
+    public JTextField getClientNameText() {
+        return clientNameText;
+    }
+
+    public JTextField getAddressText() {
+        return addressText;
+    }
+
+    public JTextField getEmailText() {
+        return emailText;
+    }
+    public JTextField getEmergencyPhoneText() {
+        return emergencyPhoneText;
+    }
+
+    public JTextField getEmergencyNameText() {
+        return emergencyNameText;
+    }
+
+    public JTextField getNextAppointmentText() {
+        return nextAppointmentText;
+    }
+
+    public JTextField getNextAppointmentTimeText() {
+        return nextAppointmentTimeText;
+    }
+
+    public JTextField getPhoneText() {
+        return phoneText;
+    }
+
+    public JTextField getPriceText() {
+        return priceText;
+    }
+
+    public JTextField getServiceTypeText() {
+        return serviceTypeText;
+    }
+
+    public JTextField getWorkText() {
+        return workText;
+    }
+
+    public JTextField getZipText() {
+        return zipText;
+    }
+    
     public void enableTextFields() {
 
         clientNameText.setEditable(true);
@@ -268,6 +330,7 @@ public class ClientFrame {
         serviceTypeText.setEditable(true);
         nextAppointmentText.setEditable(true);
         workText.setEditable(true);
+        nextAppointmentTimeText.setEditable(true);
 
     }
 
@@ -286,6 +349,7 @@ public class ClientFrame {
         serviceTypeText.setEditable(false);
         nextAppointmentText.setEditable(false);
         workText.setEditable(false);
+        nextAppointmentTimeText.setEditable(false);
 
     }
 
