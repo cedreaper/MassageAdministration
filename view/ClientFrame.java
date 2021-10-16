@@ -16,11 +16,15 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
 import controller.MainButtonListener;
+import model.Client;
+import model.ClientDB;
 
 
 public class ClientFrame {
     
     private JFrame window;
+
+    private Client client;
 
     private int height = 600;
     private int width = 800;
@@ -77,7 +81,9 @@ public class ClientFrame {
 
     public void init() {
 
-       
+        //test client populate text
+       ClientDB.setSelectedClient(0);
+
         Container cp = window.getContentPane();
         cp.setLayout(new GridLayout(3,1));
         cp.setBackground(Color.LIGHT_GRAY);
@@ -91,6 +97,10 @@ public class ClientFrame {
 
 
         priceText.setText("$");
+
+        //fill textFields
+        client = ClientDB.getSelectedClient();
+        fillTextFields();
        
 
         //sub panels
@@ -351,6 +361,50 @@ public class ClientFrame {
         workText.setEditable(false);
         nextAppointmentTimeText.setEditable(false);
 
+    }
+
+    private void fillTextFields() {
+        //populate text fields with client info
+        if(client != null) {
+
+            clientNameText.setText(client.getName());
+            phoneText.setText(client.getPhone());
+            emailText.setText(client.getEmail());
+            emergencyNameText.setText(client.getEmergencyName());
+            emergencyPhoneText.setText(client.getEmergencyPhone());
+            addressCityText.setText(client.getCity());
+            addressStateText.setText(client.getState());
+            addressText.setText(client.getAddress());
+            zipText.setText(client.getZip());
+            priceText.setText(client.getPrice());
+            serviceTypeText.setText(client.getServiceType());
+            nextAppointmentText.setText(client.getNextAppointment());
+            workText.setText(client.getWorkPhone());
+            nextAppointmentTimeText.setText(client.getAppointmentTime());
+
+        }
+  
+
+    }
+
+    public void clearTextFields() {
+
+        //clear textfields for new client addition
+
+        clientNameText.setText("");
+        phoneText.setText("");
+        emailText.setText("");
+        emergencyNameText.setText("");
+        emergencyPhoneText.setText("");
+        addressCityText.setText("");
+        addressStateText.setText("");
+        addressText.setText("");
+        zipText.setText("");
+        priceText.setText("");
+        serviceTypeText.setText("");
+        nextAppointmentText.setText("");
+        workText.setText("");
+        nextAppointmentTimeText.setText("");
     }
 
   

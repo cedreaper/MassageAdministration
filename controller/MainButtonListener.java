@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import view.LoginFrame;
 import view.MainFrame;
@@ -61,6 +62,35 @@ public class MainButtonListener implements ActionListener {
             panel.getWindow().revalidate();
 
         }
+        else if(button.equals(panel.getNewClientButton())) {
+
+            //creating a new client when pressing the new button
+            ActionEvent event;
+            long when = System.currentTimeMillis();
+
+            ActionEvent event2;
+            
+            event = new ActionEvent(panel.getClientInfoButton(), ActionEvent.ACTION_PERFORMED, "", when, 0);
+            event2 = new ActionEvent(panel.getClientFrame().getUpdateButton(), ActionEvent.ACTION_PERFORMED, "", when, 0);
+
+            //add new client button main window
+            for(ActionListener a : panel.getClientInfoButton().getActionListeners()) {
+
+                a.actionPerformed(event);
+            }
+
+            //clear textfields
+            panel.getClientFrame().clearTextFields();
+
+            //force update button for new client
+            for(ActionListener b : panel.getClientFrame().getUpdateButton().getActionListeners()) {
+
+                b.actionPerformed(event2);
+            }
+            
+
+            
+        }
         else if(button.equals(panel.getClientFrame().getExitButton())) {
 
                 //button exit to main from client window
@@ -101,15 +131,25 @@ public class MainButtonListener implements ActionListener {
         else if(button.equals(panel.getClientFrame().getConfirmButton())) {
 
             //confirm changes in client information window
+            if(panel.getClientFrame().getClientNameText().getText().equals("") ||
+            panel.getClientFrame().getPhoneText().getText().equals("")) {
+                
+                JOptionPane.showMessageDialog(panel.getWindow(), 
+                "Error: Name and Phone are REQUIRED for all clients.");
 
-            panel.getClientFrame().getUpdateButton().setEnabled(true);
-            panel.getClientFrame().getExitButton().setEnabled(true);
-            panel.getClientFrame().getMedicalButton().setEnabled(true);
-            panel.getClientFrame().getHistoryButton().setEnabled(true);
-            panel.getClientFrame().getNotesButton().setEnabled(true);
-            panel.getClientFrame().getConfirmButton().setEnabled(false);
+            } 
+            else {
 
-            panel.getClientFrame().disableTextFields();
+                panel.getClientFrame().getUpdateButton().setEnabled(true);
+                panel.getClientFrame().getExitButton().setEnabled(true);
+                panel.getClientFrame().getMedicalButton().setEnabled(true);
+                panel.getClientFrame().getHistoryButton().setEnabled(true);
+                panel.getClientFrame().getNotesButton().setEnabled(true);
+                panel.getClientFrame().getConfirmButton().setEnabled(false);
+
+                panel.getClientFrame().disableTextFields();
+            }
+            
         }
         else if(button.equals(panel.getClientFrame().getNotesButton())){
 

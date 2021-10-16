@@ -19,6 +19,8 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+import model.ClientDB;
+
 public class MedicalFrame {
 
     private JFrame window;
@@ -85,8 +87,7 @@ public class MedicalFrame {
 
         detailsText.setEditable(false);
 
-        medicalLabel.setFont(new Font("arial black", Font.BOLD, 26));
-        
+        medicalLabel.setFont(new Font("arial black", Font.BOLD, 26));     
 
         detailsText.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
@@ -106,12 +107,14 @@ public class MedicalFrame {
         panel2.setBackground(Color.LIGHT_GRAY);
         panel3.setBackground(Color.LIGHT_GRAY);
 
-        panel1.setLayout(new GridLayout(1, 2));
         panel1.setPreferredSize(new Dimension(900, 400));
 
         JPanel s1 = new JPanel();
         JPanel s2 = new JPanel();
         JPanel s3 = new JPanel();
+
+        JScrollPane checkScroll = new JScrollPane(s1);
+        checkScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
        
         s1.setBackground(Color.LIGHT_GRAY);
 
@@ -133,7 +136,8 @@ public class MedicalFrame {
             JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         detailsScroll.setPreferredSize(new Dimension(380, 160));
-           
+        
+        loadCheckedEntries();
 
         s2.add(detailsScroll);
         s2.setBackground(Color.LIGHT_GRAY);
@@ -144,12 +148,17 @@ public class MedicalFrame {
 
         s3.setBackground(Color.LIGHT_GRAY);
 
-        panel1.add(s1);
+       
+
+        
         panel1.add(s2);
         panel2.add(s3);
 
+        panel3.setLayout(new GridLayout(1, 1));
+        panel3.add(s1);
 
-        cp.add(BorderLayout.NORTH, medicalLabel);
+
+        cp.add(BorderLayout.NORTH, panel3);
         cp.add(BorderLayout.CENTER, panel1);
         cp.add(BorderLayout.SOUTH, panel2);
 
@@ -194,6 +203,18 @@ public class MedicalFrame {
         for(var c : checkBoxes) {
 
             c.setEnabled(false);
+        }
+    }
+
+    private void loadCheckedEntries() {
+
+        for(int i = 0; i < checkBoxes.size(); i++) {
+
+            if(ClientDB.getSelectedClient().getMedicalProblems().get(i)) {
+
+                checkBoxes.get(i).setSelected(true);
+            }
+
         }
     }
 

@@ -15,6 +15,8 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+import model.ClientDB;
+
 public class NotesFrame {
 
     private JFrame window;
@@ -64,6 +66,12 @@ public class NotesFrame {
 
         TitledBorder notesBorder = new TitledBorder("Notes Log");
         notesScroll.setBorder(notesBorder);
+        
+        if(!ClientDB.getSelectedClient().getNotes().equals("No Data")) {
+
+            notesArea.setText(ClientDB.getSelectedClient().getNotes());
+        }
+        
         
 
         cp.add(BorderLayout.NORTH, notesHeader);

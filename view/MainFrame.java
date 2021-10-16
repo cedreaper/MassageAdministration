@@ -136,9 +136,7 @@ public class MainFrame {
         clientLabel.setFont(new Font("Arial Black", Font.BOLD, 26));
         clientLabel.setPreferredSize(new Dimension(500, 300));
        
-
         ClientDB.loadClients();
-        
         // real client implementation
         int j = 0;
         System.out.println("Clients in DB = " + ClientDB.getClients().size() + " First Client: " + ClientDB.getClients().get(0));
@@ -309,6 +307,7 @@ public class MainFrame {
         listener = new MainButtonListener(this);
         clientInformation.addActionListener(listener);
         logout.addActionListener(listener);
+        newClient.addActionListener(listener);
 
     }
 

@@ -46,32 +46,35 @@ public class Client {
 
     public String getAddress() {
 
-        if(address != null) {
+        if(address.equals("null")) {
 
-            return address;
+            return "No Data";
         }
 
-        return "";
+        return address;
         
     }
 
     public String getPhone() {
-
+     
         return phone;
     }
 
     public String getServiceType() {
 
-        if(serviceType != null) {
+        if(serviceType.equals("null")) {
 
-            return serviceType;
+            return "No Data";
         }
 
-        return "";
+        return serviceType;
     }
 
     public String getAppointmentTime() {
+        if(appointmentTime.equals("null")) {
+            return "No Data";
 
+        }
         return appointmentTime;
     }
 
@@ -94,66 +97,106 @@ public class Client {
         }
         catch(DateTimeParseException e) {
 
-            return;
+            return ;
 
         }
     }
 
     public String getHistory() {
 
+        if(history.equals("null"))  {
+            return "No Data";
+        }
         return history;
     }
 
     public String getCity() {
+        
+        if(city.equals("null")) {
+            return "No Data";
+        }
         return city;
     }
 
     public String getState() {
+
+        if(state.equals("null")) {
+            return "No Data";
+        }
         return state;
     }
 
     public String getZip() {
+
+        if(zip.equals("null")) {
+            return "No Data";
+        }
         return zip;
     }
 
 
     public String getEmail() {
+        if(email.equals("null")) {
+            return "No Data";
+        }
         return email;
     }
 
     public String getEmergencyName() {
+
+        if(emergencyName.equals("null")) {
+            return "No Data";
+        }
         return emergencyName;
     }
 
     public String getEmergencyPhone() {
+
+        if(emergencyPhone.equals("null")) {
+            return "No Data";
+        }
         return emergencyPhone;
     }
 
     public String getPrice() {
+        if(price.equals("null")) {
+            return "No Data";
+        }
         return price;
     }
 
     public String getWorkPhone() {
+        if(workPhone.equals("null")) {
+            return "No Data";
+        }
         return workPhone;
     }
 
     public String getNotes() {
-
+        if(notes.equals("null")) {
+            return "No Data";
+        }
         return notes;
     }
 
     public String getMedicalNotes() {
 
+        if(medicalNotes.equals("null")) {
+            return "No Data";
+        }
         return medicalNotes;
     }
 
     public ArrayList<Boolean> getMedicalProblems() {
-
+        
         return medicalProblems;
     }
 
     public String getRate() {
 
+        if(price.equals("null")) {
+            return "No Data";
+        }
         return price;
     }
 

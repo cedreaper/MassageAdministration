@@ -15,6 +15,8 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
+import model.ClientDB;
+
 
 public class HistoryFrame {
 
@@ -44,6 +46,11 @@ public class HistoryFrame {
         historyArea.setPreferredSize(new Dimension(400, 400));
 
         historyArea.setEditable(false);
+
+        if(!ClientDB.getSelectedClient().getHistory().equals("No Data")) {
+
+            historyArea.setText(ClientDB.getSelectedClient().getHistory());
+        }
 
         TitledBorder border = new TitledBorder("History");
 

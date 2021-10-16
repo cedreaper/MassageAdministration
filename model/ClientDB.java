@@ -11,14 +11,22 @@ import javax.swing.JOptionPane;
 public class ClientDB {
 
     private static ArrayList<Client> clients = new ArrayList<>();
-    private String dbErrMsg = "";
+    private static String dbErrMsg = "";
+    private static Client selectedClient = null;
+    private static int loaded = 0;
     
 
-    public ClientDB() {
+    public ClientDB() { 
 
+        
     }
 
     public static void loadClients() {
+
+        if(loaded > 0) {
+
+            return;
+        }
 
         Scanner fileIn = new Scanner(System.in);
 
@@ -83,6 +91,10 @@ public class ClientDB {
         }
 
         fileIn.close();
+
+        selectedClient = clients.get(0);
+
+        loaded++;
     }
 
     public static ArrayList<Client> getClients() {
@@ -104,9 +116,22 @@ public class ClientDB {
 
    }
 
-   public String getDbErrMsg() {
+   public static String getDbErrMsg() {
 
-       return dbErrMsg;
+        return dbErrMsg;
+
+   }
+
+   public static Client getSelectedClient() {
+
+        return selectedClient;
+
+   }
+
+   public static void setSelectedClient(int index) {
+
+     
+        selectedClient = clients.get(index); 
 
    }
 
