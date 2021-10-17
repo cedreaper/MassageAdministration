@@ -436,8 +436,9 @@ public class ClientFrame {
         c.setAppointmentTime(nextAppointmentTimeText.getText());
 
         ClientDB.getClients().add(c);
-        
+        ClientDB.setSelectedClient(ClientDB.getClients().size()-1);
 
+        System.out.println(ClientDB.getSelectedClient().getName());
 
     }
 

@@ -85,6 +85,9 @@ public class MainFrame {
     private Client[] clients = new Client[MAX_CLIENTS];
     String[] appointments = new String[MAX_APPOINTMENTS];
     private JLabel clientLabel = new JLabel("Current Clients", SwingConstants.CENTER);
+    
+    private JList<Client> currentClients;
+    private JList<String> scheduledClients;
 
     private JButton clientInformation = new JButton("Client Info.");
     private JButton newClient = new JButton("New");
@@ -146,7 +149,6 @@ public class MainFrame {
         for(var c : ClientDB.getClients()) {
             
             clients[j] = c;
-            System.out.println(clients[j].getName());
             j++;
 
         }
@@ -160,10 +162,10 @@ public class MainFrame {
 
  
     
-        JList<Client> currentClients = new JList<Client>(clients);
-        int appointmentSize = 10;
+        currentClients = new JList<Client>(clients);
+        int appointmentSize = MAX_APPOINTMENTS;
         
-        JList<String> scheduledClients = new JList<String>(appointments);
+        scheduledClients = new JList<String>(appointments);
         scheduledClients.setFixedCellHeight(15);
         scheduledClients.setFixedCellWidth(50);
 
@@ -428,4 +430,13 @@ public class MainFrame {
 
         return this;
     }
+
+    public JList<Client> getCurrentClients() {
+        return currentClients;
+    }
+
+    public JList<String> getScheduledClients() {
+        return scheduledClients;
+    }
+
 }

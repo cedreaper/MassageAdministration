@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import model.ClientDB;
 import view.LoginFrame;
 import view.MainFrame;
 
@@ -90,6 +91,7 @@ public class MainButtonListener implements ActionListener {
 
                 b.actionPerformed(event2);
             }
+
             
 
             
@@ -137,8 +139,10 @@ public class MainButtonListener implements ActionListener {
 
                 //if we are adding a new client then we need to get the details here
                 panel.getClientFrame().createNewClient();
+                
 
                 panel.getClientFrame().setAddingClient(false);
+
                 return;
             }
             //confirm changes in client information window
