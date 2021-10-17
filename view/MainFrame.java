@@ -68,6 +68,8 @@ public class MainFrame {
     private int height = 600;
     private JFrame window;
 
+  
+
      // main button listener
      MainButtonListener listener;
 
@@ -138,9 +140,9 @@ public class MainFrame {
        
         ClientDB.loadClients();
         // real client implementation
-        int j = 0;
-        System.out.println("Clients in DB = " + ClientDB.getClients().size() + " First Client: " + ClientDB.getClients().get(0));
         
+        int j = 0;
+
         for(var c : ClientDB.getClients()) {
             
             clients[j] = c;
@@ -155,8 +157,6 @@ public class MainFrame {
 
             clients[i] = new Client("", "");
         }
-
-        System.out.println(clients[0].getName());
 
  
     
@@ -428,6 +428,4 @@ public class MainFrame {
 
         return this;
     }
-
-     
 }

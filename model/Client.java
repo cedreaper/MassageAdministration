@@ -37,6 +37,12 @@ public class Client {
         this.name = name;
         this.phone = phone;
 
+        //auto initialize all medical problems to false
+        for(int i = 0; i < 28; i++) {
+
+            medicalProblems.add(false);
+        }
+
     }
 
     public String getName() {

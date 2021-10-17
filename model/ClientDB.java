@@ -24,7 +24,7 @@ public class ClientDB {
     public static void loadClients() {
 
         if(loaded > 0) {
-
+            
             return;
         }
 

@@ -26,6 +26,8 @@ public class ClientFrame {
 
     private Client client;
 
+    private boolean addingClient = false;
+
     private int height = 600;
     private int width = 800;
 
@@ -405,6 +407,38 @@ public class ClientFrame {
         nextAppointmentText.setText("");
         workText.setText("");
         nextAppointmentTimeText.setText("");
+    }
+
+    public boolean getAddingNewClient() {
+
+        return addingClient;
+    }
+
+    public void setAddingClient(boolean addingClient) {
+        this.addingClient = addingClient;
+    }
+
+    public void createNewClient() {
+        //handle createion of new clients from main client add click
+        Client c = new Client(clientNameText.getText(), phoneText.getText());
+
+        c.setEmail(emailText.getText());
+        c.setEmergencyName(emergencyNameText.getText());
+        c.setEmergencyPhone(emergencyPhoneText.getText());
+        c.setCity(addressCityText.getText());
+        c.setState(addressStateText.getText());
+        c.setAddress(addressText.getText());
+        c.setZip(zipText.getText());
+        c.setPrice(priceText.getText());
+        c.setServiceType(serviceTypeText.getText());
+        c.setNextAppointment(nextAppointmentText.getText());
+        c.setWorkPhone(workText.getText());
+        c.setAppointmentTime(nextAppointmentTimeText.getText());
+
+        ClientDB.getClients().add(c);
+        
+
+
     }
 
   

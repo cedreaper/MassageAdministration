@@ -64,6 +64,9 @@ public class MainButtonListener implements ActionListener {
         }
         else if(button.equals(panel.getNewClientButton())) {
 
+            //change status to adding new client
+            panel.getClientFrame().setAddingClient(true);
+
             //creating a new client when pressing the new button
             ActionEvent event;
             long when = System.currentTimeMillis();
@@ -130,6 +133,14 @@ public class MainButtonListener implements ActionListener {
         }
         else if(button.equals(panel.getClientFrame().getConfirmButton())) {
 
+            if(panel.getClientFrame().getAddingNewClient()) {
+
+                //if we are adding a new client then we need to get the details here
+                panel.getClientFrame().createNewClient();
+
+                panel.getClientFrame().setAddingClient(false);
+                return;
+            }
             //confirm changes in client information window
             if(panel.getClientFrame().getClientNameText().getText().equals("") ||
             panel.getClientFrame().getPhoneText().getText().equals("")) {
