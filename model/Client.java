@@ -37,6 +37,22 @@ public class Client {
         this.name = name;
         this.phone = phone;
 
+        address = "No Data";
+        serviceType = "No Data";
+        nextAppointment = "No Data";
+        appointmentTime = "No Data";
+        price = "No Data";
+        workPhone = "No Data";
+        email = "No Data";
+        emergencyName  = "No Data";
+        emergencyPhone = "No Data";
+        state = "No Data";
+        history = "No Data";
+        zip = "No Data";
+        notes = "No Data";
+        medicalNotes = "No Data";
+        city = "No Data";
+
         //auto initialize all medical problems to false
         for(int i = 0; i < 28; i++) {
 

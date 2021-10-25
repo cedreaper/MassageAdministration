@@ -136,6 +136,10 @@ public class MainFrame {
         northPanel.add(newClient);
         northPanel.add(removeClient);
         northPanel.add(logout);
+
+        removeClient.setEnabled(false);
+        clientInformation.setEnabled(false);
+        newClient.setEnabled(true);
        
 
         clientLabel.setFont(new Font("Arial Black", Font.BOLD, 26));
@@ -288,6 +292,25 @@ public class MainFrame {
             
        });
 
+       currentClients.addListSelectionListener(event -> {
+
+        //disabled until selected index
+        if(currentClients.getSelectedValue().getName().equals("")) {
+
+            removeClient.setEnabled(false);
+            clientInformation.setEnabled(false);
+            newClient.setEnabled(true);
+
+        }
+        else {
+
+            removeClient.setEnabled(true);
+            clientInformation.setEnabled(true);
+            newClient.setEnabled(false);
+        }
+        
+   });
+
        
        
        
@@ -310,6 +333,7 @@ public class MainFrame {
         clientInformation.addActionListener(listener);
         logout.addActionListener(listener);
         newClient.addActionListener(listener);
+        removeClient.addActionListener(listener);
 
     }
 

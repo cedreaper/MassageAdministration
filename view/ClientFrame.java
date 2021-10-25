@@ -84,7 +84,7 @@ public class ClientFrame {
     public void init() {
 
         //test client populate text
-       ClientDB.setSelectedClient(0);
+       //ClientDB.setSelectedClient(0);
 
         Container cp = window.getContentPane();
         cp.setLayout(new GridLayout(3,1));
@@ -419,6 +419,7 @@ public class ClientFrame {
     }
 
     public void createNewClient() {
+
         //handle createion of new clients from main client add click
         Client c = new Client(clientNameText.getText(), phoneText.getText());
 

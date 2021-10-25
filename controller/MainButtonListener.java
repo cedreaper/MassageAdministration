@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import model.Client;
 import model.ClientDB;
 import view.LoginFrame;
 import view.MainFrame;
@@ -56,6 +57,22 @@ public class MainButtonListener implements ActionListener {
 
             //open client information window
 
+            if(panel.getCurrentClients().getSelectedIndex() > ClientDB.getClients().size()) {
+
+                //ClientDB.setSelectedClient(-1);
+                return;
+
+            }
+            else {
+
+                if(panel.getCurrentClients().getSelectedIndex() != -1) {
+
+                    ClientDB.setSelectedClient(panel.getCurrentClients().getSelectedIndex());
+                }
+                
+            }
+            
+
             panel.getWindow().getContentPane().removeAll();
 
             panel.getClientFrame().init();
@@ -64,37 +81,42 @@ public class MainButtonListener implements ActionListener {
 
         }
         else if(button.equals(panel.getNewClientButton())) {
-
-            //change status to adding new client
-            panel.getClientFrame().setAddingClient(true);
-
-            //creating a new client when pressing the new button
-            ActionEvent event;
-            long when = System.currentTimeMillis();
-
-            ActionEvent event2;
             
-            event = new ActionEvent(panel.getClientInfoButton(), ActionEvent.ACTION_PERFORMED, "", when, 0);
-            event2 = new ActionEvent(panel.getClientFrame().getUpdateButton(), ActionEvent.ACTION_PERFORMED, "", when, 0);
+            try {
 
-            //add new client button main window
-            for(ActionListener a : panel.getClientInfoButton().getActionListeners()) {
+            
+                String addedClient =
+                JOptionPane.showInputDialog(panel.getWindow(), 
+                    "Enter Name and Phone number for new client.\nFormat = Name, Phone\n" +
+                    "e.g. Henry Jenkins, 405-599-1234");
+                    int commaIndex = 0;
 
-                a.actionPerformed(event);
+                    for(int i = 0; i < addedClient.length(); i++) {
+
+                        if(addedClient.charAt(i) == ',') {
+
+                            commaIndex = i;
+                        }
+                    }
+                
+                    String name = addedClient.substring(0, commaIndex);
+                    String phone = addedClient.substring(commaIndex + 2, addedClient.length());
+
+                // add new client based on substring results
+                Client newClient = new Client(name, phone);
+                ClientDB.getClients().add(newClient);
+
+                panel.getWindow().getContentPane().removeAll();
+                panel.getMainFrame().init();
+                
+                panel.getWindow().revalidate();
             }
+            catch (Exception except) {
 
-            //clear textfields
-            panel.getClientFrame().clearTextFields();
+                //return if cancel or invalid information
+                return;
 
-            //force update button for new client
-            for(ActionListener b : panel.getClientFrame().getUpdateButton().getActionListeners()) {
-
-                b.actionPerformed(event2);
             }
-
-            
-
-            
         }
         else if(button.equals(panel.getClientFrame().getExitButton())) {
 
@@ -248,6 +270,30 @@ public class MainButtonListener implements ActionListener {
             var loginFrame = new LoginFrame(panel.getWindow());
             loginFrame.init();
             panel.getWindow().revalidate();
+        }
+        else if(button.equals(panel.getRemoveButton())) {
+
+            // remove client button
+
+            String result =
+            JOptionPane.showInputDialog(panel.getWindow(), "Are you sure you want to delete " + 
+            panel.getCurrentClients().getSelectedValue().getName() + 
+            "\n" +
+            "**THIS IS PERMANENT**\nType yes to confirm.");
+
+            if(result.toLowerCase().equals("yes")) {
+
+                ClientDB.getClients().remove(panel.getCurrentClients().getSelectedIndex());
+                panel.getWindow().getContentPane().removeAll();
+                panel.getMainFrame().init();
+                
+                panel.getWindow().revalidate();
+            }
+            else {
+
+                return;
+            }
+                 
         }
         
     }

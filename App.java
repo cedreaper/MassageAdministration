@@ -10,7 +10,7 @@ import view.LoginFrame;
 public class App {
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         JFrame window = new JFrame();
         window.setBackground(Color.LIGHT_GRAY);
