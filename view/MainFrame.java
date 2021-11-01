@@ -97,7 +97,7 @@ public class MainFrame {
     private JButton cancel = new JButton("Cancel Appointment");
     private JButton complete = new JButton("Complete Appointment");
     private JButton checkIn = new JButton("Check In");
-    private JLabel checkInLabel = new JLabel("Client IN: ");
+    private JLabel checkInLabel = new JLabel("");
 
     private int appointmentIndex = 0;
     private String[] keys = new String[5];
@@ -110,6 +110,11 @@ public class MainFrame {
     //current client count xx / MAX 
 
     private int clientCount;
+
+    private int timeInHour = 5;
+    private int timeInMin = 4;
+    private int timeOutHour = 6;
+    private int timeOutMin = 34;
 
 
     public MainFrame(JFrame window, LoginFrame loginFrame) {
@@ -138,7 +143,7 @@ public class MainFrame {
 
         checkInLabel.setForeground(Color.RED);
 
-        checkInLabel.setVisible(false);
+        //checkInLabel.setVisible(false);
         checkInLabel.setFont(new Font("Arial Black", Font.BOLD, 20));
         
         complete.setEnabled(false);
@@ -302,8 +307,9 @@ public class MainFrame {
 
             if(scheduledClients.getSelectedValue() == null) {
 
+                checkInLabel.setText("");
                 checkIn.setVisible(false);
-                checkInLabel.setVisible(false);
+                //checkInLabel.setVisible(false);
                 cancel.setEnabled(false);
                 complete.setEnabled(false);
                 return;
@@ -315,14 +321,14 @@ public class MainFrame {
             if(scheduledClients.getSelectedValue().isEmpty()) {
     
                 checkIn.setVisible(false);
-                checkInLabel.setVisible(false);
+                //checkInLabel.setVisible(false);
                 cancel.setEnabled(false);
                 complete.setEnabled(false);
 
             }
             else {
                 
-                checkInLabel.setVisible(false);
+                //checkInLabel.setVisible(false);
                 checkIn.setVisible(true);
                 cancel.setEnabled(true);
                
@@ -351,14 +357,14 @@ public class MainFrame {
 
    checkIn.addActionListener(event -> {
 
-        int timeHour = LocalTime.now().getHour();
-        int timeMin = LocalTime.now().getMinute();
+        //timeInHour = LocalTime.now().getHour();
+        //timeInMin = LocalTime.now().getMinute();
 
         checkInLabel.setText("Client IN: ");
 
-        checkInLabel.setVisible(true);
-        checkInLabel.setText("Client IN: " + (timeHour > 12 ? timeHour - 12 : timeHour) +  " : " 
-            + (timeMin < 10 ? "0" + timeMin : timeMin));
+        //checkInLabel.setVisible(true);
+        checkInLabel.setText("Client IN: " + (timeInHour > 12 ? timeInHour - 12 : timeInHour) +  " : " 
+            + (timeInMin < 10 ? "0" + timeInMin : timeInMin));
 
         checkIn.setVisible(false);
         cancel.setEnabled(false);
@@ -367,15 +373,23 @@ public class MainFrame {
 
    complete.addActionListener(event -> {
 
-        int timeHour = LocalTime.now().getHour();
-        int timeMin = LocalTime.now().getMinute();
+        //int timeOutHour = LocalTime.now().getHour();
+        //int timeOutMin = LocalTime.now().getMinute();
+        int hours = timeOutHour - timeInHour;
+        int duration =  (60 * hours) + (timeOutMin - timeInMin);
 
         cancel.setEnabled(true);
-        checkInLabel.setText("Client OUT: " + (timeHour > 12 ? timeHour - 12 : timeHour) +  ":" 
-            + (timeMin < 10 ? "0" + timeMin : timeMin)); 
+        checkInLabel.setText("Client OUT: " + (timeOutHour > 12 ? timeOutHour - 12 : timeOutHour) +  ":" 
+            + (timeOutMin < 10 ? "0" + timeOutMin : timeOutMin) + " Duration: " + duration + " minutes" ); 
 
             complete.setEnabled(false);
             cancel.setEnabled(false);
+
+            appointments[appointmentIndex] = "";
+
+            window.getContentPane().removeAll();
+            init();
+            window.revalidate();
 
             for(int l = 0; l < keys.length; l++) {
 
@@ -420,7 +434,12 @@ public class MainFrame {
         checkIn.setVisible(false);
         appointments[appointmentIndex] = "";
         checkInLabel.setText("APPOINTMENT CANCELLED");
-        checkInLabel.setVisible(true);
+
+        window.getContentPane().removeAll();
+        init();
+        window.revalidate();
+
+        //checkInLabel.setVisible(true);
         cancel.setEnabled(false);
 
         for(var aptKey : keys) {

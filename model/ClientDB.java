@@ -104,6 +104,25 @@ public class ClientDB {
 
     public static void updateClients() {
 
+        Scanner fileOut = new Scanner(System.in);
+        Scanner backup = new Scanner(System.in);
+
+        try {
+
+            fileOut = new Scanner(new File("mcdb/bdtneilc.txt"));
+            backup = new Scanner(new File("mcdb/backup"));
+
+            //////// Backup
+
+
+        }
+        catch(Exception ex) {
+
+            JOptionPane.showMessageDialog(null, "Error: Changes have not been saved to the database.");
+
+            return;
+
+        }
 
     }
 
