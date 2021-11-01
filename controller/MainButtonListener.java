@@ -98,7 +98,8 @@ public class MainButtonListener implements ActionListener {
                             commaIndex = i;
                         }
                     }
-                
+                    
+                    //substring the line from the input window to get the correct parts for client build
                     String name = addedClient.substring(0, commaIndex);
                     String phone = addedClient.substring(commaIndex + 2, addedClient.length());
 
@@ -114,6 +115,7 @@ public class MainButtonListener implements ActionListener {
             catch (Exception except) {
 
                 //return if cancel or invalid information
+               
                 return;
 
             }
@@ -185,6 +187,12 @@ public class MainButtonListener implements ActionListener {
                 panel.getClientFrame().getConfirmButton().setEnabled(false);
 
                 panel.getClientFrame().disableTextFields();
+
+                //update each field to match client
+
+                panel.getClientFrame().updateClient();
+
+                
             }
             
         }
@@ -219,6 +227,17 @@ public class MainButtonListener implements ActionListener {
             panel.getNotesFrame().getSaveButton().setEnabled(false);
             panel.getNotesFrame().getAddButton().setEnabled(true);
             panel.getNotesFrame().getExitButton().setEnabled(true);
+
+            //save notes to client DB
+            if(ClientDB.getSelectedClient().getNotes().equals("No Data")) {
+
+                ClientDB.getSelectedClient().setNotes(panel.getNotesFrame().getNotesArea().getText());
+            }
+            else {
+
+                ClientDB.getSelectedClient().setNotes(ClientDB.getSelectedClient().getNotes() + " " 
+                + panel.getNotesFrame().getNotesArea().getText());
+            }
         }
         else if(button.equals(panel.getClientFrame().getHistoryButton())) {
 
@@ -237,6 +256,7 @@ public class MainButtonListener implements ActionListener {
             panel.getMedicalFrame().init();
             panel.getWindow().setTitle("Medical Information - Scissortail Massage");
             panel.getWindow().revalidate();
+
         }
         else if(button.equals(panel.getMedicalFrame().getEditButton())) {
 
@@ -261,9 +281,37 @@ public class MainButtonListener implements ActionListener {
             panel.getMedicalFrame().getSaveButton().setEnabled(false);
             panel.getMedicalFrame().getExitButton().setEnabled(true);
             panel.getMedicalFrame().getEditButton().setEnabled(true);
+
+            //save all selected checkboxes accordingly - they correspond with the indexes of the boolean
+            //list in client object
+
+            for(int i = 0; i < panel.getMedicalFrame().getCheckBoxes().size(); i++) {
+
+                if(panel.getMedicalFrame().getCheckBoxes().get(i).isSelected()) {
+                    //check box selected? then add to the boolean array true value
+                    ClientDB.getSelectedClient().getMedicalProblems().set(i, true);
+                }
+            }
+
+            //also need to get the values from the checked details box and add to the medical notes
+            if(ClientDB.getSelectedClient().getMedicalNotes().equals("No Data")) {
+
+                ClientDB.getSelectedClient().setMedicalNotes(panel.getMedicalFrame().getDetailsText().getText());
+            }
+            else {
+
+                ClientDB.getSelectedClient().setMedicalNotes(ClientDB.getSelectedClient().getMedicalNotes() + " " 
+                + panel.getMedicalFrame().getDetailsText().getText());
+            }
+            
+
         }
         else if(button.equals(panel.getLogoutButton())) {
-            
+            // save database file before exiting and reset the counter for load clients....
+
+            //add code here // <-----------------------
+
+
             //logout main - reopen login screen
             panel.getWindow().getContentPane().removeAll();
             // panel.getWindow().setLocation(550,350);

@@ -37,8 +37,7 @@ public class HistoryFrame {
     public void init() {
 
         Container cp = window.getContentPane();
-        //window.setSize(700, 600);
-        //window.setLocation(500,200);
+      
         cp.setBackground(Color.LIGHT_GRAY);
 
         historyArea.setLineWrap(true);
@@ -47,6 +46,7 @@ public class HistoryFrame {
 
         historyArea.setEditable(false);
 
+        //load client appointment history
         if(!ClientDB.getSelectedClient().getHistory().equals("No Data")) {
 
             historyArea.setText(ClientDB.getSelectedClient().getHistory());

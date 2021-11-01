@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.Properties;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Calendar;
 
 import model.Client;
@@ -96,6 +97,11 @@ public class MainFrame {
     private JButton cancel = new JButton("Cancel Appointment");
     private JButton complete = new JButton("Complete Appointment");
     private JButton checkIn = new JButton("Check In");
+    private JLabel checkInLabel = new JLabel("Client IN: ");
+
+    private int appointmentIndex = 0;
+    private String[] keys = new String[5];
+
 
     private JDatePickerImpl datePicker;
 
@@ -130,7 +136,12 @@ public class MainFrame {
         //northPanel.setLayout(new GridLayout(1, 4));
         northPanel.setBackground(Color.LIGHT_GRAY);
 
+        checkInLabel.setForeground(Color.RED);
+
+        checkInLabel.setVisible(false);
+        checkInLabel.setFont(new Font("Arial Black", Font.BOLD, 20));
         
+        complete.setEnabled(false);
 
         northPanel.add(clientInformation);
         northPanel.add(newClient);
@@ -173,7 +184,9 @@ public class MainFrame {
         scheduledClients.setFixedCellHeight(15);
         scheduledClients.setFixedCellWidth(50);
 
-        
+        //disable appointment handling buttons initially
+        complete.setEnabled(false);
+        cancel.setEnabled(false);
         
         //attaching the scrollpane to currentClients listbox control
         var scrollPane = new JScrollPane(currentClients);
@@ -236,6 +249,7 @@ public class MainFrame {
                     if(cl.getNextAppointment().equals(LocalDate.now().toString())) {            
                         appointments[k] = cl.toString() + " | " + cl.getServiceType() + " | " +
                         cl.getAppointmentTime();
+                        keys[k] = cl.getName();
                         k++;
                     }
                 }
@@ -246,6 +260,7 @@ public class MainFrame {
 
         datePicker.addActionListener(event -> {
 
+            
             //disable check in button because nothing should be selected as we changed the date
             checkIn.setVisible(false);
 
@@ -261,11 +276,17 @@ public class MainFrame {
 
             for( var c : clients) {
 
+               if(c == null) {
+
+                    return;
+               }
+
                if(c.getNextAppointment() != null) {
 
                    if(c.getNextAppointment().equals(datePicker.getJFormattedTextField().getText())) {            
                        appointments[i] = c.toString() + " | " + c.getServiceType() + " | " +
                        c.getAppointmentTime();
+                       keys[i] = c.getName();
                        i++;
                    }
                 }
@@ -279,15 +300,32 @@ public class MainFrame {
 
        scheduledClients.addListSelectionListener(event -> {
 
+            if(scheduledClients.getSelectedValue() == null) {
+
+                checkIn.setVisible(false);
+                checkInLabel.setVisible(false);
+                cancel.setEnabled(false);
+                complete.setEnabled(false);
+                return;
+            }
+            
+            appointmentIndex = scheduledClients.getSelectedIndex();
+
             //disabled until selected index
             if(scheduledClients.getSelectedValue().isEmpty()) {
     
                 checkIn.setVisible(false);
+                checkInLabel.setVisible(false);
+                cancel.setEnabled(false);
+                complete.setEnabled(false);
 
             }
             else {
-
+                
+                checkInLabel.setVisible(false);
                 checkIn.setVisible(true);
+                cancel.setEnabled(true);
+               
             }
             
        });
@@ -311,10 +349,103 @@ public class MainFrame {
         
    });
 
+   checkIn.addActionListener(event -> {
+
+        int timeHour = LocalTime.now().getHour();
+        int timeMin = LocalTime.now().getMinute();
+
+        checkInLabel.setText("Client IN: ");
+
+        checkInLabel.setVisible(true);
+        checkInLabel.setText("Client IN: " + (timeHour > 12 ? timeHour - 12 : timeHour) +  " : " 
+            + (timeMin < 10 ? "0" + timeMin : timeMin));
+
+        checkIn.setVisible(false);
+        cancel.setEnabled(false);
+        complete.setEnabled(true);
+   } );
+
+   complete.addActionListener(event -> {
+
+        int timeHour = LocalTime.now().getHour();
+        int timeMin = LocalTime.now().getMinute();
+
+        cancel.setEnabled(true);
+        checkInLabel.setText("Client OUT: " + (timeHour > 12 ? timeHour - 12 : timeHour) +  ":" 
+            + (timeMin < 10 ? "0" + timeMin : timeMin)); 
+
+            complete.setEnabled(false);
+            cancel.setEnabled(false);
+
+            for(int l = 0; l < keys.length; l++) {
+
+                for(int i = 0; i < ClientDB.getClients().size(); i++) {
+    
+                    if(keys[l] != null) {
+                        
+                        if(keys[l].equals(ClientDB.getClients().get(i).getName())) {
+    
+                            if(ClientDB.getClients().get(i).getHistory().equals("No Data")) {
+    
+                                ClientDB.getClients().get(i).setHistory("");
+                                
+                            }
+
+                            if(ClientDB.getClients().get(i).getNextAppointment().equals("1999-10-10")) {
+
+                                return;
+                            }
+    
+                            ClientDB.getClients().get(i).setHistory(ClientDB.getClients().get(i).getHistory()
+                                + "\n" + ClientDB.getClients().get(i).getNextAppointment() + " " + 
+                                ClientDB.getClients().get(i).getAppointmentTime());
+    
+                                if(!ClientDB.getClients().get(i).getNextAppointment().equals("1999-10-10")) {
+    
+                                    ClientDB.getClients().get(i).setNextAppointment("1999-10-10");
+                                    ClientDB.getClients().get(i).setAppointmentTime("");
+    
+                                }
+                            
+                            break;
+                        }
+                    }
+                }
+            }
+
+   });
+
+   cancel.addActionListener(event -> {
+
+        checkIn.setVisible(false);
+        appointments[appointmentIndex] = "";
+        checkInLabel.setText("APPOINTMENT CANCELLED");
+        checkInLabel.setVisible(true);
+        cancel.setEnabled(false);
+
+        for(var aptKey : keys) {
+
+            for(int i = 0; i < ClientDB.getClients().size(); i++) {
+
+                if(aptKey != null) {
+                    
+                    if(aptKey.equals(ClientDB.getClients().get(i).getName())) {
+
+                        ClientDB.getClients().get(i).setNextAppointment("1999-10-10");
+  
+                        break;
+                    }
+                }
+               
+            }
+
+        }
+   });
+
        
        
        
-        
+        south2.add(checkInLabel);
         south2.add(checkIn);
         south2.add(cancel);
         south2.add(complete);

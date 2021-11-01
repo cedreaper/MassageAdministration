@@ -81,11 +81,20 @@ public class MedicalFrame {
             c.setEnabled(false);
         }
 
-        //System.out.println("Size checkboxes arraylist: " + checkBoxes.size());
-
         saveButton.setEnabled(false);
 
         detailsText.setEditable(false);
+        
+        // load client medical details text
+        if(ClientDB.getSelectedClient().getMedicalNotes().equals("No Data")) {
+
+            detailsText.setText("");
+        }
+        else {
+
+            detailsText.setText(ClientDB.getSelectedClient().getMedicalNotes());
+        }
+        
 
         medicalLabel.setFont(new Font("arial black", Font.BOLD, 26));     
 

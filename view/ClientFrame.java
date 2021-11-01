@@ -443,5 +443,23 @@ public class ClientFrame {
 
     }
 
+    public void updateClient() {
+
+        ClientDB.getSelectedClient().setName(clientNameText.getText());
+        ClientDB.getSelectedClient().setPhone(phoneText.getText());
+        ClientDB.getSelectedClient().setEmail(emailText.getText());
+        ClientDB.getSelectedClient().setEmergencyName(emergencyNameText.getText());
+        ClientDB.getSelectedClient().setEmergencyPhone(emergencyPhoneText.getText());
+        ClientDB.getSelectedClient().setCity(addressCityText.getText());
+        ClientDB.getSelectedClient().setState(addressStateText.getText());
+        ClientDB.getSelectedClient().setAddress(addressText.getText());
+        ClientDB.getSelectedClient().setZip(zipText.getText());
+        ClientDB.getSelectedClient().setPrice(priceText.getText());
+        ClientDB.getSelectedClient().setServiceType(serviceTypeText.getText());
+        ClientDB.getSelectedClient().setNextAppointment(nextAppointmentText.getText());
+        ClientDB.getSelectedClient().setWorkPhone(workText.getText());
+        ClientDB.getSelectedClient().setAppointmentTime(nextAppointmentTimeText.getText());
+    }
+
   
 }

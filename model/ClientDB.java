@@ -102,19 +102,10 @@ public class ClientDB {
         return clients;
     }
 
-    public static void updateAll() {
+    public static void updateClients() {
 
 
     }
-
-    public static void updateClient(Client client) {
-
-
-    }
-
-   public static void removeClient(Client client) {
-
-   }
 
    public static String getDbErrMsg() {
 
