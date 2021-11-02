@@ -309,7 +309,8 @@ public class MainButtonListener implements ActionListener {
         else if(button.equals(panel.getLogoutButton())) {
             // save database file before exiting and reset the counter for load clients....
 
-            //add code here // <-----------------------
+            ClientDB.updateClients();
+
 
 
             //logout main - reopen login screen

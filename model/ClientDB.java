@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileWriter;
 
 import javax.swing.JOptionPane;
 
@@ -104,16 +105,81 @@ public class ClientDB {
 
     public static void updateClients() {
 
-        Scanner fileOut = new Scanner(System.in);
-        Scanner backup = new Scanner(System.in);
+        FileWriter fileOut;
+        FileWriter backup;
+      
 
         try {
 
-            fileOut = new Scanner(new File("mcdb/bdtneilc.txt"));
-            backup = new Scanner(new File("mcdb/backup"));
+            fileOut = new FileWriter(new File("mcdb/bdtneilc.txt"));
+            backup = new FileWriter(new File("mcdb/backup"));
 
-            //////// Backup
+            //////// Backup file generation first
 
+            for (var c : clients) {
+
+                backup.write(c.getName() + "\n");
+                backup.write(c.getPhone() + "\n");
+                backup.write(c.getAddress() + "\n");
+                backup.write(c.getServiceType() + "\n");
+                backup.write(c.getNextAppointment() + "\n");
+                backup.write(c.getAppointmentTime() +"\n");
+                backup.write(c.getPrice() + "\n");
+                backup.write(c.getEmergencyName() + "\n");
+                backup.write(c.getEmergencyPhone() + "\n");
+                backup.write(c.getState() + "\n");
+                backup.write(c.getCity() + "\n");
+                backup.write(c.getZip() + "\n");
+                backup.write(c.getWorkPhone() + "\n");
+                backup.write(c.getEmail() + "\n");
+                backup.write(c.getHistory() + "\n");
+                backup.write(c.getMedicalNotes() + "\n");
+                backup.write(c.getNotes() + "\n");
+
+                //write check boxes
+
+               for(int i = 0; i < 28; i++) {    
+
+                    backup.write(Boolean.toString(c.getMedicalProblems().get(i)) + "\n");
+                    
+               }
+    
+            }
+
+            backup.close();
+
+           //write main file
+           
+           for (var c : clients) {
+
+            fileOut.write(c.getName() + "\n");
+            fileOut.write(c.getPhone() + "\n");
+            fileOut.write(c.getAddress() + "\n");
+            fileOut.write(c.getServiceType() + "\n");
+            fileOut.write(c.getNextAppointment() + "\n");
+            fileOut.write(c.getAppointmentTime() +"\n");
+            fileOut.write(c.getPrice() + "\n");
+            fileOut.write(c.getEmergencyName() + "\n");
+            fileOut.write(c.getEmergencyPhone() + "\n");
+            fileOut.write(c.getState() + "\n");
+            fileOut.write(c.getCity() + "\n");
+            fileOut.write(c.getZip() + "\n");
+            fileOut.write(c.getWorkPhone() + "\n");
+            fileOut.write(c.getEmail() + "\n");
+            fileOut.write(c.getHistory() + "\n");
+            fileOut.write(c.getMedicalNotes() + "\n");
+            fileOut.write(c.getNotes() + "\n");
+
+            for(int i = 0; i < 28; i++) {    
+
+                fileOut.write(Boolean.toString(c.getMedicalProblems().get(i)) + "\n");
+                   
+            }
+
+           }
+
+           fileOut.close();
+           
 
         }
         catch(Exception ex) {
@@ -143,6 +209,13 @@ public class ClientDB {
      
         selectedClient = clients.get(index); 
 
+   }
+
+ 
+
+   public static void resetLoaded() {
+
+        loaded = 0;
    }
 
    
