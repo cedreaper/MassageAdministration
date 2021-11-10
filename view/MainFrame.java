@@ -111,10 +111,10 @@ public class MainFrame {
 
     private int clientCount;
 
-    private int timeInHour = 5;
-    private int timeInMin = 4;
-    private int timeOutHour = 6;
-    private int timeOutMin = 34;
+    private int timeInHour = 0;
+    private int timeInMin = 0;
+    private int timeOutHour = 0;
+    private int timeOutMin = 0;
 
 
     public MainFrame(JFrame window, LoginFrame loginFrame) {
@@ -357,8 +357,8 @@ public class MainFrame {
 
    checkIn.addActionListener(event -> {
 
-        //timeInHour = LocalTime.now().getHour();
-        //timeInMin = LocalTime.now().getMinute();
+        timeInHour = LocalTime.now().getHour();
+        timeInMin = LocalTime.now().getMinute();
 
         checkInLabel.setText("Client IN: ");
 
@@ -373,8 +373,8 @@ public class MainFrame {
 
    complete.addActionListener(event -> {
 
-        //int timeOutHour = LocalTime.now().getHour();
-        //int timeOutMin = LocalTime.now().getMinute();
+        int timeOutHour = LocalTime.now().getHour();
+        int timeOutMin = LocalTime.now().getMinute();
         int hours = timeOutHour - timeInHour;
         int duration =  (60 * hours) + (timeOutMin - timeInMin);
 

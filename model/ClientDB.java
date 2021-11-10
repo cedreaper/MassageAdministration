@@ -60,9 +60,23 @@ public class ClientDB {
             c.setZip(fileIn.nextLine());
             c.setWorkPhone(fileIn.nextLine());
             c.setEmail(fileIn.nextLine());
-            c.setHistory(fileIn.nextLine());
-            c.setMedicalNotes(fileIn.nextLine());
-            c.setNotes(fileIn.nextLine());
+            
+            //load all history in the history
+            String history = fileIn.nextLine();
+            
+            history = history.replace("^", "\n");
+
+            c.setHistory(history);
+            
+            //load medical notes
+            String medicalNotes = fileIn.nextLine();
+            medicalNotes = medicalNotes.replace("^", "\n");
+            c.setMedicalNotes(medicalNotes);
+
+            //load soap notes
+            String notes = fileIn.nextLine();
+            notes = notes.replace("^", "\n");
+            c.setNotes(notes);
 
 
             for(int i = 0; i < 28; i++) {
@@ -132,9 +146,21 @@ public class ClientDB {
                 backup.write(c.getZip() + "\n");
                 backup.write(c.getWorkPhone() + "\n");
                 backup.write(c.getEmail() + "\n");
-                backup.write(c.getHistory() + "\n");
-                backup.write(c.getMedicalNotes() + "\n");
-                backup.write(c.getNotes() + "\n");
+
+                String history = c.getHistory();
+                history = history.replace("n", "^");
+
+                backup.write(history + "\n");
+
+                String medicalNotes = c.getMedicalNotes();
+                medicalNotes = medicalNotes.replace("\n", "^");
+
+                backup.write(medicalNotes + "\n");
+
+                String notes = c.getNotes();
+                notes = notes.replace("\n", "^");
+
+                backup.write(notes  + "\n");
 
                 //write check boxes
 
@@ -166,9 +192,21 @@ public class ClientDB {
             fileOut.write(c.getZip() + "\n");
             fileOut.write(c.getWorkPhone() + "\n");
             fileOut.write(c.getEmail() + "\n");
-            fileOut.write(c.getHistory() + "\n");
-            fileOut.write(c.getMedicalNotes() + "\n");
-            fileOut.write(c.getNotes() + "\n");
+            
+            String history = c.getHistory();
+            history = history.replaceAll("\n", "^");
+
+            fileOut.write(history + "\n");
+
+            String medicalNotes = c.getMedicalNotes();
+            medicalNotes = medicalNotes.replaceAll("\n", "^");
+
+            fileOut.write(medicalNotes + "\n");
+
+            String notes = c.getNotes();
+            notes = notes.replaceAll("\n", "^");
+
+            fileOut.write(notes  + "\n");
 
             for(int i = 0; i < 28; i++) {    
 
@@ -184,7 +222,8 @@ public class ClientDB {
         }
         catch(Exception ex) {
 
-            JOptionPane.showMessageDialog(null, "Error: Changes have not been saved to the database.");
+            JOptionPane.showMessageDialog(null, "Error: Changes have not been saved to the database." +
+                 "\n\nError: " + ex.getMessage());
 
             return;
 
